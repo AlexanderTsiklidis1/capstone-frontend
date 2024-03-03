@@ -1,4 +1,4 @@
-// import { UserProvider } from "./Providers/UserProvider";
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -184,7 +184,7 @@ function App() {
     <JoinScreen getMeetingAndToken={getMeetingAndToken} />
   )}
       
-      <UserProvider>
+     
         <Router>
           <Routes>
 
@@ -193,7 +193,7 @@ function App() {
           </Routes>
         </Router>
 
-      </UserProvider>
+      
 
 
     </div>
