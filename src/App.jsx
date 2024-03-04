@@ -11,6 +11,7 @@ import {
 import { authToken, createMeeting } from "./API";
 import ReactPlayer from "react-player";
 import Navbar from "./Components/Navbar";
+import LandingPage from './Components/LandingPage';
 
 
 function JoinScreen({ getMeetingAndToken }) {
@@ -171,6 +172,7 @@ function App() {
       <Router>
 
       <Navbar />
+      <LandingPage/>
       {authToken && meetingId ? (
         <MeetingProvider
         config={{
