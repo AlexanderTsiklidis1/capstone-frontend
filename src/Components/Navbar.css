@@ -1,0 +1,89 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 20px;
+    height: 80px; /* Increased height */
+  }
+  
+  .logo {
+    /* Logo and name styles */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .menu-icon {
+    /* Styles for the hamburger icon */
+    cursor: pointer;
+    position: relative; /* Added to position dropdown directly underneath */
+  }
+  
+  .hamburger-icon .line {
+    width: 30px; /* Adjusted for better visibility */
+    height: 3px;
+    background-color: black;
+    margin: 5px 0;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    top: 35px; /* Adjusted to show directly beneath the hamburger */
+    left: 0;
+  }
+  
+  .menu-icon:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dropdown-menu a:last-child {
+    border-bottom: none;
+  }
+  
+  .login-signup {
+    /* Adjusted for a single button */
+  }
+  
+  .login-signup-button {
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Media query for responsiveness */
+  @media (max-width: 768px) {
+    .logo {
+      position: static;
+      transform: none;
+    }
+  
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .login-signup {
+      margin-top: 10px;
+    }
+  }
+  
