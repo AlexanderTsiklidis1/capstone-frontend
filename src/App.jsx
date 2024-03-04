@@ -1,6 +1,7 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   MeetingProvider,
   MeetingConsumer,
@@ -9,7 +10,8 @@ import {
 } from "@videosdk.live/react-sdk";
 import { authToken, createMeeting } from "./API";
 import ReactPlayer from "react-player";
-import './App.css'
+import Navbar from "./Components/Navbar";
+
 
 function JoinScreen({ getMeetingAndToken }) {
   const [meetingId, setMeetingId] = useState(null);
@@ -166,28 +168,31 @@ function App() {
   return (
     <div className="App">
       <header className="App-header"></header>
+      <Router>
 
+      <Navbar />
       {authToken && meetingId ? (
-    <MeetingProvider
-      config={{
-        meetingId,
-        micEnabled: true,
-        webcamEnabled: true,
-        name: "C.V. Raman",
-      }}
-      token={authToken}
-    >
+        <MeetingProvider
+        config={{
+          meetingId,
+          micEnabled: true,
+          webcamEnabled: true,
+          name: "C.V. Raman",
+        }}
+        token={authToken}
+        >
       <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
     </MeetingProvider>
   ) : (
     <JoinScreen getMeetingAndToken={getMeetingAndToken} />
-  )}
+    )}
       
      
 
       
 
 
+    </Router>
     </div>
   );
 }
