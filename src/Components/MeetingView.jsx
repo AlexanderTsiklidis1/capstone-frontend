@@ -28,7 +28,7 @@ function MeetingView({ meetingId, onMeetingLeave }) {
       ) : joined === "JOINING" ? (
         <p>Joining the meeting...</p>
       ) : (
-        <button onClick={joinMeeting}>Join</button>
+        <button className='button' onClick={joinMeeting}>Join</button>
       )}
     </div>
   );

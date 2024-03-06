@@ -20,7 +20,7 @@ const Navbar = () => {
 
         {isOpen && (
           <div className="dropdown-menu">
-            <a href="/home" onClick={toggleDropdown}>Home</a>
+            <a href="/" onClick={toggleDropdown}>Home</a>
             <a href="/dashboard" onClick={toggleDropdown}>Dashboard</a>
             <a href="/book-interview" onClick={toggleDropdown}>Book an Interview</a>
             <a href="/interview-feedback" onClick={toggleDropdown}>Interview Feedback</a>

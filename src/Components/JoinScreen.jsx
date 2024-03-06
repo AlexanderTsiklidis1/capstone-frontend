@@ -12,9 +12,10 @@ function JoinScreen({ getMeetingAndToken }) {
         placeholder="Enter Meeting Id"
         onChange={(e) => setMeetingId(e.target.value)}
       />
-      <button onClick={onClick}>Join</button>
+      <br />
+      <button className='button' onClick={onClick}>Join</button>
       {" or "}
-      <button onClick={onClick}>Create Meeting</button>
+      <button className='button' onClick={onClick}>Create Meeting</button>
     </div>
   );
 }

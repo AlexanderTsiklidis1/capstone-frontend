@@ -1,6 +1,6 @@
 .landing-page {
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f7f7f7; 
+  background-color: whitesmoke 
 }
 
 .intro-section {
@@ -20,7 +20,7 @@
 }
 
 .content-wrapper p {
-  color: #333;
+  color: #5372FF;
   line-height: 1.6;
   font-size: 1rem;
   margin-bottom: 2rem;
