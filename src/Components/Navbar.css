@@ -11,7 +11,7 @@
 .logo {
   font-weight: 600; 
   font-size: 1.5rem;
-  color: #0056b3; 
+  color: #5372FF; 
 }
 
 .menu-icon {
@@ -22,7 +22,7 @@
 .hamburger-icon .line {
   width: 25px; 
   height: 3px;
-  background-color: #333;
+  background-color: #5372FF; 
   margin: 6px 0;
 }
 
@@ -33,9 +33,13 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1); 
-  top: 35px;
-  right: 0; 
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  top: 100%; 
+  left: 0; 
+  z-index: 1000; 
+}
+.menu-icon {
+  position: relative; 
 }
 
 .menu-icon:hover .dropdown-menu,
@@ -47,7 +51,7 @@
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: #333;
+  color: #5372FF;
   border-bottom: 1px solid #ddd;
 }
 
@@ -56,7 +60,7 @@
 }
 
 .login-signup {
-  margin-left: 1rem; /* Add separation from logo */
+  margin-left: 1rem; 
 }
 
 
@@ -64,6 +68,7 @@
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
+    align-items: flex-start;
     padding: 1rem;
   }
 
@@ -73,7 +78,7 @@
   }
 
   .logo {
-    order: -1; /* Logo comes first on mobile */
+    order: -1; 
     margin-bottom: 1rem;
   }
 

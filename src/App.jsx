@@ -11,9 +11,11 @@ function App() {
     <div className="App">
       <header className="App-header"></header>
       <Router>
-        <Navbar />
-        <LandingPage/>
-        <MeetingPage/>
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<LandingPage/>} />
+        </Routes>
+          <MeetingPage/>
       </Router>
     </div>
   );
