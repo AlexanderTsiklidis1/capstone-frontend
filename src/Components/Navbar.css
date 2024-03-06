@@ -1,88 +1,85 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f8f8;
-    padding: 20px;
-    height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.logo {
+  font-weight: 600; 
+  font-size: 1.5rem;
+  color: #0056b3; 
+}
+
+.menu-icon {
+  cursor: pointer;
+  display: inline-block; 
+}
+
+.hamburger-icon .line {
+  width: 25px; 
+  height: 3px;
+  background-color: #333;
+  margin: 6px 0;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1); 
+  top: 35px;
+  right: 0; 
+}
+
+.menu-icon:hover .dropdown-menu,
+.menu-icon:focus .dropdown-menu {
+  display: block; 
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.login-signup {
+  margin-left: 1rem; /* Add separation from logo */
+}
+
+
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
   }
-  
-  .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-weight: bold;
-    font-size: 24px;
-  }
-  
+
   .menu-icon {
-    
-    cursor: pointer;
-    position: relative; 
+    position: static;
+    margin-bottom: 1rem;
   }
-  
-  .hamburger-icon .line {
-    width: 30px; 
-    height: 3px;
-    background-color: black;
-    margin: 5px 0;
+
+  .logo {
+    order: -1; /* Logo comes first on mobile */
+    margin-bottom: 1rem;
   }
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    top: 35px; 
-    left: 0;
-  }
-  
-  .menu-icon:hover .dropdown-menu {
-    display: block; /* Show dropdown on hover */
-  }
-  
-  .dropdown-menu a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .dropdown-menu a:last-child {
-    border-bottom: none;
-  }
-  
+
   .login-signup {
-    
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
   }
-  
-  .login-signup-button {
-    text-decoration: none;
-    padding: 10px 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: blue;
-    color: white;
-    font-weight: bold;
-  }
-  
-  
-  @media (max-width: 768px) {
-    .logo {
-      position: static;
-      transform: none;
-    }
-  
-    .navbar {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .login-signup {
-      margin-top: 10px;
-    }
-  }
-  
+}

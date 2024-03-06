@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className="logo">Acelt</div>
 
       <div className="login-signup">
-        <a href="/login-signup" className="login-signup-button">LOGIN / SIGN UP</a>
+        <a href="/login-signup" className="button login-signup-button">LOGIN / SIGN UP</a>
       </div>
     </nav>
   );
