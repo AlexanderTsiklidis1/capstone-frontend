@@ -12,7 +12,7 @@ const LandingPage = () => {
           <button className="button contact-button">Contact Us</button>
         </div>
         <div className="image-wrapper">
-          <img src="/path-to-your-image.jpg" alt="Group studying" />
+          <img src="src/assets/interview pic landing page.jpeg" alt="Group studying" />
         </div>
       </section>
     </div>

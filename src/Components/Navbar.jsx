@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css'; 
+import './Button.css'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
 
         {isOpen && (
           <div className="dropdown-menu">
-            <a href="/home" onClick={toggleDropdown}>Home</a>
+            <a href="/" onClick={toggleDropdown}>Home</a>
             <a href="/dashboard" onClick={toggleDropdown}>Dashboard</a>
             <a href="/book-interview" onClick={toggleDropdown}>Book an Interview</a>
             <a href="/interview-feedback" onClick={toggleDropdown}>Interview Feedback</a>

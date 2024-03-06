@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useMeeting } from '@videosdk.live/react-sdk';
 import ParticipantView from './ParticipantView';
 import Controls from './Controls';
+import './Button.css';
+import './VideoComponents.css'
 
 function MeetingView({ meetingId, onMeetingLeave }) {
   const [joined, setJoined] = useState(null);
@@ -28,7 +30,7 @@ function MeetingView({ meetingId, onMeetingLeave }) {
       ) : joined === "JOINING" ? (
         <p>Joining the meeting...</p>
       ) : (
-        <button onClick={joinMeeting}>Join</button>
+        <button className='button' onClick={joinMeeting}>Join</button>
       )}
     </div>
   );
