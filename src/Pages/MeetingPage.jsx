@@ -25,7 +25,7 @@ function MeetingPage() {
           meetingId,
           micEnabled: true,
           webcamEnabled: true,
-          name: "C.V. Raman",
+          name: "Pursuit",
         }}
         token={authToken}
         >

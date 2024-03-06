@@ -14,8 +14,8 @@ function App() {
         <Navbar/>
         <Routes>
           <Route path="/" element={<LandingPage/>} />
+          <Route path="/book-interview" element={<MeetingPage/>} />
         </Routes>
-          <MeetingPage/>
       </Router>
     </div>
   );
