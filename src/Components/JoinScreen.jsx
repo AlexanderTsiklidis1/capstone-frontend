@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import "./Button.css"
+import "./VideoComponents.css"
 
 function JoinScreen({ getMeetingAndToken }) {
   const [meetingId, setMeetingId] = useState(null);
   const onClick = async () => {
     await getMeetingAndToken(meetingId);
   };
+
   return (
-    <div>
+    <div className="join-screen-container">
       <input
         type="text"
         placeholder="Enter Meeting Id"
@@ -14,7 +17,6 @@ function JoinScreen({ getMeetingAndToken }) {
       />
       <br />
       <button className='button' onClick={onClick}>Join</button>
-      {" or "}
       <button className='button' onClick={onClick}>Create Meeting</button>
     </div>
   );

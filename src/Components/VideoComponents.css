@@ -1,0 +1,76 @@
+/* General container for all video components */
+.container {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+  }
+  
+  /* MeetingView styles */
+  .container h3 {
+    color: #5372FF;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Controls styling */
+  .controls-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .controls-container .button {
+    margin-right: 0.5rem;
+    background-color: #5372FF;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .controls-container .button:hover {
+    background-color: #4057cc;
+  }
+  
+  /* ParticipantView styles */
+  .participant {
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  /* JoinScreen styling */
+  .join-screen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; 
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .join-screen-container input {
+    padding: 0.5rem;
+    margin-bottom: 1rem; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px; 
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .controls-container {
+      flex-direction: column;
+    }
+  
+  }
