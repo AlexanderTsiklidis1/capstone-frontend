@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import JoinScreen from '../Components/JoinScreen';
 import MeetingView from '../Components/MeetingView';
 import {MeetingProvider} from "@videosdk.live/react-sdk";
-import { authToken, createMeeting } from '../API'; // Ensure this path matches your project structure
+import { authToken, createMeeting } from '../API'; 
 import '../Components/Button.css';
 import '../Components/VideoComponents.css'
 
