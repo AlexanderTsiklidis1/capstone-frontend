@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./Providers/UserProvider";
 import Navbar from "./Components/Navbar";
+import UserDashboard from "./Components/UserDashboard";
 import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
 
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage/>} />
               <Route path="/book-interview" element={<MeetingPage/>} />
+              <Route path="/userDashboard" element={<UserDashboard/>} />
             </Routes>
         </Router>
       </UserProvider>
