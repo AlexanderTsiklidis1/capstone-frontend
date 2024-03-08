@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import UserDashboard from "./Components/UserDashboard";
 import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
+import ResourcesPage from './Pages/ResourcesPage'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<LandingPage/>} />
               <Route path="/book-interview" element={<MeetingPage/>} />
               <Route path="/userDashboard" element={<UserDashboard/>} />
+              <Route path="/resources" element= {<ResourcesPage/>} />
             </Routes>
         </Router>
       </UserProvider>
