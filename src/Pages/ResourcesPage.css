@@ -1,0 +1,47 @@
+.resources-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .resources-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .advice-section {
+    margin-bottom: 20px;
+  }
+  
+  .advice-quote {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-style: italic;
+    text-align: center;
+    color: #4a47a3; 
+    font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; 
+  }
+  
+  .resources-list h2 {
+    font-size: 24px;
+    color: #3f3d56; /* Adjust color to suit your app's theme */
+    margin-bottom: 10px;
+  }
+  
+  .resources-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .resources-list li {
+    margin-bottom: 8px;
+  }
+  
+  .resources-list a {
+    text-decoration: none;
+    color: #4a47a3; 
+    transition: color 0.3s ease;
+  }
+  
+  .resources-list a:hover {
+    color: #6c63ff; 
+  }
