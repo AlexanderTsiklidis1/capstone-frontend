@@ -24,7 +24,7 @@ const Navbar = () => {
             <a href="/" onClick={toggleDropdown}>Home</a>
             <a href="/userDashboard" onClick={toggleDropdown}>Dashboard</a>
             <a href="/book-interview" onClick={toggleDropdown}>Book an Interview</a>
-            <a href="/interview-feedback" onClick={toggleDropdown}>Interview Feedback</a>
+            <a href="/resources" onClick={toggleDropdown}>Resources</a>
             <a href="/interview-prompts" onClick={toggleDropdown}>Interview Prompts</a>
           </div>
         )}
