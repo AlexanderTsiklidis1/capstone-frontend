@@ -6,6 +6,7 @@ import UserDashboard from "./Components/UserDashboard";
 import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
 import ResourcesPage from './Pages/ResourcesPage';
+import PromptsPage from './Pages/PromptsPage';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path="/book-interview" element={<MeetingPage/>} />
               <Route path="/userDashboard" element={<UserDashboard/>} />
               <Route path="/resources" element= {<ResourcesPage/>} />
+              <Route path="/prompts" element= {<PromptsPage/>} />
             </Routes>
         </Router>
       </UserProvider>
