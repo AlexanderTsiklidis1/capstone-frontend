@@ -1,4 +1,5 @@
 import { getApp, initializeApp, deleteApp,  } from "firebase/app";
+import "firebase/firestore"; 
 import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -15,8 +16,9 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_APP_ID,
     measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
-
+// firebase.initializeApp(firebaseConfig)
 export const app = initializeApp(firebaseConfig);
+// export const db = firebase.firestore()
 
 export const auth = getAuth();
 

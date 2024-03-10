@@ -1,0 +1,36 @@
+.prompts-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .prompts-header {
+    text-align: center;
+    color: #5372FF;
+    margin-bottom: 30px;
+  }
+  
+  .prompt-item {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .prompt-question {
+    font-size: 22px;
+    color: #5372FF;
+    margin-bottom: 15px;
+  }
+  
+  .prompt-tips {
+    list-style-position: inside;
+    padding-left: 0;
+  }
+  
+  .prompt-tips li {
+    margin-bottom: 10px;
+    color: #5372FF;
+  }
