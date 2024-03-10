@@ -5,7 +5,7 @@ import Navbar from "./Components/Navbar";
 import UserDashboard from "./Components/UserDashboard";
 import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
-import ResourcesPage from './Pages/ResourcesPage'
+import ResourcesPage from './Pages/ResourcesPage';
 
 
 function App() {
