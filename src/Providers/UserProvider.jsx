@@ -5,15 +5,7 @@ import { auth } from "../Services/Firebase";
 
 // import { db } from '../Services/Firebase';
 
-export const addUser = async (user) => {
-  await db.collection('users').add(user);
-};
 
-export const fetchUsers = async () => {
-  const usersSnapshot = await db.collection('users').get();
-  const usersList = usersSnapshot.docs.map(doc => doc.data());
-  return usersList;
-};
 
 
 export const UserContext = createContext(null);

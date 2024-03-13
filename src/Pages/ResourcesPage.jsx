@@ -1,5 +1,5 @@
 import React from 'react';
-import './ResourcesPage.css'; // Make sure to create a corresponding CSS file for styling
+import './ResourcesPage.css'; 
 
 const ResourcesPage = () => {
   return (

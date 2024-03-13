@@ -20,7 +20,6 @@ const LandingPage = () => {
         <div className="content-wrapper">
           <h1>Our aim is to elevate your interview skills to new heights</h1>
           <p>Our community-driven app allows users to engage in mock interviews with fellow members, fostering a supportive environment for skill honing. Earn badges and climb the ranks as you showcase your interviewing prowess. Stay tuned for exciting updates, including the integration of AI technology!</p>
-          <button className='button' onClick={ signInWithGoogle }>Sign in With google</button>
           <button className="button contact-button">Contact Us</button>
         </div>
         <div className="image-wrapper">
