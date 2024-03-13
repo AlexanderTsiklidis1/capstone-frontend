@@ -13,11 +13,8 @@ const Navbar = () => {
   };
   const user = useContext(UserContext);
   const navigate  = useNavigate();
-  useEffect(() => {
-    if (user) {
-      navigate("/userDashboard");
-    }
-  }, [user, navigate]);
+ 
+  
   return (
     <nav className="navbar">
       <div className="menu-icon" onClick={toggleDropdown}>
