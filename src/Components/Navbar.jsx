@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Navbar.css'; 
 import './Button.css'
+import { signInWithGoogle, logOut } from "../Services/Firebase.js";
+import { UserContext } from "../Providers/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +11,13 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
+  const user = useContext(UserContext);
+  const navigate  = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/userDashboard");
+    }
+  }, [user, navigate]);
   return (
     <nav className="navbar">
       <div className="menu-icon" onClick={toggleDropdown}>
@@ -33,7 +42,7 @@ const Navbar = () => {
       <div className="logo">Acelt</div>
 
       <div className="login-signup">
-        <a href="/login-signup" className="button login-signup-button">LOGIN / SIGN UP</a>
+        <button href="/login-signup" onClick={signInWithGoogle} className="button login-signup-button">LOGIN / SIGN UP</button>
       </div>
     </nav>
   );

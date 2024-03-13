@@ -15,12 +15,12 @@ function App() {
     <div className="App">
       <header className="App-header"></header>
       <UserProvider>
-          <Router>
-          <Navbar/>
+        <Router>
+         <Navbar/> 
             <Routes>
               <Route path="/" element={<LandingPage/>} />
               <Route path="/book-interview" element={<MeetingPage/>} />
-              <Route path="/userDashboard" element={<UserDashboard/>} />
+              <Route path="/userDashboard" element={<UserDashboard currentUser={currentUser}/>} />
               <Route path="/resources" element= {<ResourcesPage/>} />
               <Route path="/prompts" element= {<PromptsPage/>} />
             </Routes>
