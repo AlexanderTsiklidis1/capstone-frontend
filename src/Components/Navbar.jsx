@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = useContext(UserContext);
+  
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
@@ -18,6 +18,12 @@ const Navbar = () => {
     logOut();
     navigate("/");
   }
+
+  const user = useContext(UserContext);
+    console.log(user)
+
+
+
 
   return (
     <nav className="navbar">
@@ -46,6 +52,7 @@ const Navbar = () => {
                 <a href="/book-interview" onClick={toggleDropdown}>Book an Interview</a>
                 <a href="/resources" onClick={toggleDropdown}>Resources</a>
                 <a href="/prompts" onClick={toggleDropdown}>Interview Prompts</a>
+                <a href="/calendar" onClick={toggleDropdown}>Calendar</a>
               </div>
             )}
           </div>
