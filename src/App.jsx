@@ -7,6 +7,7 @@ import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
 import ResourcesPage from './Pages/ResourcesPage';
 import PromptsPage from './Pages/PromptsPage';
+import Calendar from './Components/Calender';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/userDashboard" element={<UserDashboard currentUser={currentUser}/>} />
               <Route path="/resources" element= {<ResourcesPage/>} />
               <Route path="/prompts" element= {<PromptsPage/>} />
+              <Route path="/calendar" element= {<Calendar/>} />
             </Routes>
         </Router>
       </UserProvider>
