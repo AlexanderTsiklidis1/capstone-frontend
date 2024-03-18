@@ -34,6 +34,7 @@ const Navbar = () => {
           <div className="logo">AceIT</div>
           <a href="/resources" className="button">Resources</a>
           <a href="/prompts" className="button">Interview Prompts</a>
+          <a href="/calendar2" className='button' onClick={toggleDropdown}>Calendar</a>
           <button onClick={handleLogout} className="button">LOGOUT</button>
         </>
       ) : (
@@ -52,7 +53,7 @@ const Navbar = () => {
                 <a href="/book-interview" onClick={toggleDropdown}>Book an Interview</a>
                 <a href="/resources" onClick={toggleDropdown}>Resources</a>
                 <a href="/prompts" onClick={toggleDropdown}>Interview Prompts</a>
-                <a href="/calendar" onClick={toggleDropdown}>Calendar</a>
+                <a href="/calendar2" onClick={toggleDropdown}>Calendar</a>
               </div>
             )}
           </div>
