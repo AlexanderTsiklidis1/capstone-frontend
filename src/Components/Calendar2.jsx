@@ -1,25 +1,29 @@
-import React from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 
 const CalendlyWidget = () => {
-    const myCalendly = [
-        "https://calendly.com/tim-pursuit/aceit-example-tim",
-        "https://calendly.com/alexandertsiklidis/30min",
-        "https://calendly.com/timothyasprec/meeting-with-program-delivery-manager?from=slack&month=2024-03",
-      ];
-      const [selected, setSelected] = useState(0);
-      
-      function handleClick() {
-        if (selected < 2) {
-          setSelected(selected + 1);
-        } else {
-          setSelected(0);
-        }
+  const myCalendly = [
+    "https://calendly.com/alexandertsiklidis/aceit-interview",
+    "https://calendly.com/anthonyhuarneck/30min-aceit-behavioral-interview",
+    "https://calendly.com/michaelkleemoff/aceit-interview-w-michael",
+    "https://calendly.com/aishakleemoff/aceit-interview-with-aisha"
+  ];
+  const [selected, setSelected] = useState(0);
+
+  function handleClick() {
+    if (selected < 3) {
+      setSelected(selected + 1);
+    } else {
+      setSelected(0);
     }
+  }
 
   return (
-    <div className="calendly-inline-widget" style={{ minWidth: '320px', height: '630px' }}>
-         <button onClick={handleClick}>change</button>
+    <div
+      className="calendly-inline-widget"
+      style={{ minWidth: "320px", height: "630px" }}
+    >
+      <button onClick={handleClick}>change</button>
       <iframe
         src={`${myCalendly[selected]}?embed_domain=${window.location.hostname}&embed_type=Inline`}
         width="100%"
@@ -29,6 +33,5 @@ const CalendlyWidget = () => {
     </div>
   );
 };
-
 
 export default CalendlyWidget;
