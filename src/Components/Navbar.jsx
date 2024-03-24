@@ -36,9 +36,6 @@ const Navbar = () => {
 					<a href='/resources' className='button'>
 						Resources
 					</a>
-					<a href='/prompts' className='button'>
-						Interview Prompts
-					</a>
 					<a href='/calendar2' className='button' onClick={toggleDropdown}>
 						Calendar
 					</a>
@@ -68,12 +65,6 @@ const Navbar = () => {
 							</a>
 							<a href='/resources' onClick={toggleDropdown}>
 								Resources
-							</a>
-							<a href='/prompts' onClick={toggleDropdown}>
-								Interview Prompts
-							</a>
-							<a href='/calendar2' onClick={toggleDropdown}>
-								Calendar
 							</a>
 						</div>
 					)}
