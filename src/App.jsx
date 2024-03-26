@@ -6,7 +6,7 @@ import UserDashboard from './Components/UserDashboard';
 import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
 import ResourcesPage from './Pages/ResourcesPage';
-import CalendlyWidget from './Components/Calendar2';
+import CalendlyWidget from './Components/CalendlyWidget';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
