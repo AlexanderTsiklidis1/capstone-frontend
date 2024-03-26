@@ -18,6 +18,7 @@
     "@fullcalendar/list": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
+    "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
     "@videosdk.live/react-sdk": "^0.1.84",
     "animate.css": "^4.1.1",
