@@ -6,7 +6,6 @@ import UserDashboard from './Components/UserDashboard';
 import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
 import ResourcesPage from './Pages/ResourcesPage';
-import PromptsPage from './Pages/PromptsPage';
 import CalendlyWidget from './Components/Calendar2';
 
 function App() {
@@ -19,14 +18,12 @@ function App() {
 					<Navbar />
 					<Routes>
 						<Route path='/' element={<LandingPage />} />
-						<Route path='/book-interview' element={<MeetingPage />} />
+						<Route path='/book-interview' element={<CalendlyWidget />} />
 						<Route
 							path='/userDashboard'
 							element={<UserDashboard currentUser={currentUser} />}
 						/>
 						<Route path='/resources' element={<ResourcesPage />} />
-						<Route path='/prompts' element={<PromptsPage />} />
-						<Route path='/calendar2' element={<CalendlyWidget />} />
 					</Routes>
 				</Router>
 			</UserProvider>
