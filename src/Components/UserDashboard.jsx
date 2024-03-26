@@ -56,8 +56,8 @@ const UserDashboard = () => {
 					sx={{
 						ml: 5,
 						mt: 5,
-						// maxWidth: 'xs',
-						width: '100%',
+						maxWidth: '80vw',
+						// width: '100%',
 						border: 1,
 						borderColor: '#F3B6B6',
 						borderStyle: 'solid',
@@ -67,8 +67,8 @@ const UserDashboard = () => {
 						sx={{
 							ml: 4,
 							mt: 4,
-							width: 85,
-							height: 85,
+							width: 185,
+							height: 185,
 							borderRadius: '50%',
 						}}
 						image={user?.photoURL}
