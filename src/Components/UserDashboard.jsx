@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Providers/UserProvider';
 
+import CalendlyWidget from './Calendar2';
+
 import {
 	Button,
 	Card,
@@ -45,7 +47,8 @@ const UserDashboard = () => {
 					textAlign: 'center',
 					color: '#5372FF',
 					fontWeight: 700,
-					fontSize: 20,
+					fontSize: 35,
+					pt: 5,
 				}}
 			>
 				{user?.displayName}&#39;s Dashboard
@@ -67,8 +70,8 @@ const UserDashboard = () => {
 						sx={{
 							ml: 4,
 							mt: 4,
-							width: 185,
-							height: 185,
+							width: 160,
+							height: 160,
 							borderRadius: '50%',
 						}}
 						image={user?.photoURL}
@@ -100,14 +103,16 @@ const UserDashboard = () => {
 
 				<Card
 					sx={{
-						m: 15,
+						m: 5,
 						border: 1,
+						minWidth: 240,
+						maxHeight: 400,
 						borderColor: '#F3B6B6',
 						borderStyle: 'solid',
 					}}
 				>
 					<CardContent>
-						<Typography>CALENDAR</Typography>
+						<CalendlyWidget />
 					</CardContent>
 				</Card>
 			</Stack>
