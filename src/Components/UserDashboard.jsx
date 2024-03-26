@@ -109,6 +109,7 @@ const UserDashboard = () => {
 						maxHeight: 400,
 						borderColor: '#F3B6B6',
 						borderStyle: 'solid',
+						overflow: 'auto',
 					}}
 				>
 					<CardContent>
