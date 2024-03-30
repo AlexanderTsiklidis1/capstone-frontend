@@ -5,24 +5,29 @@
   background-color: white;
   padding: 1rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .logo {
-  font-weight: 600; 
+  font-weight: 600;
   font-size: 2rem;
-  color: #5372FF; 
+  color: #5372ff;
+}
+
+.logo img {
+  width: 45px;
 }
 
 .menu-icon {
   cursor: pointer;
-  display: inline-block; 
+  display: inline-block;
 }
 
 .hamburger-icon .line {
-  width: 25px; 
+  width: 25px;
   height: 3px;
-  background-color: #5372FF; 
+  background-color: #5372ff;
   margin: 6px 0;
 }
 
@@ -33,25 +38,25 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  top: 100%; 
-  left: 0; 
-  z-index: 1000; 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  top: 100%;
+  left: 0;
+  z-index: 1000;
 }
 .menu-icon {
-  position: relative; 
+  position: relative;
 }
 
 .menu-icon:hover .dropdown-menu,
 .menu-icon:focus .dropdown-menu {
-  display: block; 
+  display: block;
 }
 
 .dropdown-menu a {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: #5372FF;
+  color: #5372ff;
   border-bottom: 1px solid #ddd;
 }
 
@@ -60,10 +65,8 @@
 }
 
 .login-signup {
-  margin-left: 1rem; 
+  margin-left: 1rem;
 }
-
-
 
 @media (max-width: 768px) {
   .navbar {
@@ -78,7 +81,7 @@
   }
 
   .logo {
-    order: -1; 
+    order: -1;
     margin-bottom: 1rem;
   }
 
