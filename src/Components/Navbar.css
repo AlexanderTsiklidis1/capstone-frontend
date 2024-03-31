@@ -10,9 +10,10 @@
 }
 
 .logo {
-  font-weight: 600;
+  font-weight: 900;
   font-size: 2rem;
   color: #5372ff;
+  font-family: "Reddit Mono", monospace;
 }
 
 .logo img {
