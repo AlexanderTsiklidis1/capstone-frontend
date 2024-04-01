@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Providers/UserProvider';
 
 import CalendlyWidget from './CalendlyWidget';
+import InterviewerGradingForm from './InterviewerGradingForm';
 
 import {
 	Button,
@@ -43,9 +44,9 @@ const UserDashboard = () => {
 		// </div>
 		<Stack>
 			<Typography
+				color='primary'
 				sx={{
 					textAlign: 'center',
-					color: '#5372FF',
 					fontWeight: 700,
 					fontSize: 35,
 					pt: 5,
@@ -87,17 +88,23 @@ const UserDashboard = () => {
 				</Card>
 			</Stack>
 
-			<Stack flexDirection='row' rowSpacing={1} columnSpacing={1}>
+			<Stack flexDirection='row' rowSpacing={1} columnGap={1}>
 				<Card
 					sx={{
 						m: 5,
 						border: 1,
+						minWidth: '35vw',
 						borderColor: '#F3B6B6',
 						borderStyle: 'solid',
+						overflow: 'auto',
+						px: 2,
 					}}
 				>
-					<CardContent>
-						<Typography>RANK</Typography>
+					<CardContent sx={{ overflow: 'auto', width: '100%' }}>
+						<Typography>GRADING</Typography>
+						<CardContent sx={{ width: '100%' }}>
+							<InterviewerGradingForm user={user} />
+						</CardContent>
 					</CardContent>
 				</Card>
 
