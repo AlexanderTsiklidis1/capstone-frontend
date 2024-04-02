@@ -42,7 +42,7 @@ const PromptQuestion = ({ question }) => {
 		>
 			<CardContent>
 				<Typography
-					color='secondary.dark'
+					color='primary'
 					sx={{
 						fontWeight: 700,
 					}}
