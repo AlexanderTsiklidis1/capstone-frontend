@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import './Navbar.css';
 import './Button.css';
 import { signInWithGoogle, logOut } from '../Services/Firebase.js';
@@ -25,26 +25,6 @@ const Navbar = () => {
 
 	return (
 		<nav className='navbar'>
-			{/* {user ? (
-				<>
-					<a href='/userDashboard' className='button'>
-						Dashboard
-					</a>
-					<a href='/book-interview' className='button'>
-						Book an Interview
-					</a>
-					<div className='logo'>AceIT</div>
-					<a href='/resources' className='button'>
-						Resources
-					</a>
-					<a href='/calendar2' className='button' onClick={toggleDropdown}>
-						Calendar
-					</a>
-					<button onClick={handleLogout} className='button'>
-						LOGOUT
-					</button>
-				</>
-			) : ( */}
 			<>
 				<div className='menu-icon' onClick={toggleDropdown}>
 					<div className='hamburger-icon'>
@@ -63,6 +43,9 @@ const Navbar = () => {
 							</a>
 							<a href='/book-interview' onClick={toggleDropdown}>
 								Book an Interview
+							</a>
+							<a href='/feedback' onClick={toggleDropdown}>
+								Mock Behavioral Interview Feedback
 							</a>
 							<a href='/resources' onClick={toggleDropdown}>
 								Resources
@@ -98,7 +81,6 @@ const Navbar = () => {
 					</button>
 				</div>
 			</>
-			{/* )} */}
 		</nav>
 	);
 };

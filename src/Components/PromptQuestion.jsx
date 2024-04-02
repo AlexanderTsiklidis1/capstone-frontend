@@ -20,7 +20,6 @@ const PromptQuestion = ({ question }) => {
 	const handleChange = (event) => {
 		setGrade(event.target.value);
 	};
-	console.log(grade);
 
 	const selectColor =
 		grade === 6.25
