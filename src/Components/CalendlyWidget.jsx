@@ -3,15 +3,13 @@ import { useState } from "react";
 
 const CalendlyWidget = () => {
   const myCalendly = [
-    "https://calendly.com/alexandertsiklidis/aceit-interview",
-    "https://calendly.com/anthonyhuarneck/30min-aceit-behavioral-interview",
-    "https://calendly.com/michaelkleemoff/aceit-interview-w-michael",
-    "https://calendly.com/aishakleemoff/aceit-interview-with-aisha"
+    "https://calendly.com/alexandertsiklidis1/30min",
+    
   ];
   const [selected, setSelected] = useState(0);
 
   function handleClick() {
-    if (selected < 3) {
+    if (selected < 1) {
       setSelected(selected + 1);
     } else {
       setSelected(0);

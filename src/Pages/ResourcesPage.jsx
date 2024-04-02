@@ -1,58 +1,104 @@
-import React from "react";
-import "./ResourcesPage.css";
-
-const interviewPrompts = [
-  {
-    question:
-      "Can you describe a challenging situation you faced at work and how you handled it?",
-    tips: [
-      "Use the STAR method (Situation, Task, Action, Result) to structure your response.",
-      "Be specific about the task and your responsibilities.",
-      "Focus on the action you took and the positive outcome.",
-    ],
-  },
-  {
-    question:
-      "Tell me about a time you had to collaborate with a colleague who was difficult to work with.",
-    tips: [
-      "Highlight your interpersonal skills and ability to manage conflict.",
-      "Discuss the importance of teamwork and the common goal.",
-      "Stay positive and refrain from speaking poorly about others.",
-    ],
-  },
-];
+import React from 'react';
+import {
+  Typography,
+  Card,
+  CardContent,
+  List,
+  ListItem,
+  ListItemText,
+  Link,
+  Grid,
+} from '@mui/material';
 
 const ResourcesPage = () => {
   return (
-    <div className="resources-container">
-      <header className="resources-header">
-        <h1>AceIt Interview Preparation Resources:</h1>
-      </header>
-      <div className="prompts-container">
-        <h1 className="prompts-header">Behavioral Interview Prompts</h1>
-        {interviewPrompts.map((prompt, index) => (
-          <div key={index} className="prompt-item">
-            <h2 className="prompt-question">{prompt.question}</h2>
-            <ul className="prompt-tips">
-              {prompt.tips.map((tip, tipIndex) => (
-                <li key={tipIndex}>{tip}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div className="advice-section">
-        <p className="advice-quote">
-          "Practice makes perfect – simulate real interview scenarios!"
-        </p>
-        <p className="advice-quote">
-          "Be clear, concise, and structured – use the STAR method."
-        </p>
-        <p className="advice-quote">
-          "Reflect on your experiences – each one has a story to tell."
-        </p>
-      </div>
-    </div>
+    <>
+      <Typography
+        color="primary.dark"
+        sx={{
+          textAlign: 'center',
+          fontWeight: 700,
+          fontSize: 35,
+          pt: 5,
+          pb: 2,
+        }}
+      >
+        Interview Preparation Resources
+      </Typography>
+
+      <Grid container spacing={2} sx={{ px: 3 }}>
+        {/* Tips for Interviews */}
+        <Grid item xs={12} md={6}>
+          <Card variant="outlined" sx={{ mb: 2 }}>
+            <CardContent>
+              <Typography sx={{ fontSize: 24, mb: 2 }}>Interview Tips</Typography>
+              <List>
+                <ListItem>
+                  <ListItemText primary="Research the company and understand its mission." />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Practice your answers to common questions." />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Prepare questions to ask the interviewer." />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Common Questions */}
+        <Grid item xs={12} md={6}>
+          <Card variant="outlined" sx={{ mb: 2 }}>
+            <CardContent>
+              <Typography sx={{ fontSize: 24, mb: 2 }}>Common Questions</Typography>
+              <List>
+                <ListItem>
+                  <ListItemText primary="Tell me about yourself." />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="What are your greatest strengths and weaknesses?" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Describe a challenge you've faced at work and how you overcame it." />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Preparation Materials */}
+        <Grid item xs={12}>
+          <Card variant="outlined" sx={{ mb: 2 }}>
+            <CardContent>
+              <Typography sx={{ fontSize: 24, mb: 2 }}>Preparation Materials</Typography>
+              <List>
+                <ListItem>
+                  <ListItemText primary="‘Cracking the Coding Interview’ by Gayle Laakmann McDowell - a great resource for technical interviews." />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Online platforms like LeetCode and HackerRank for practice problems." />
+                </ListItem>
+               
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Motivational Section */}
+        <Grid item xs={12}>
+          <Card variant="outlined">
+            <CardContent>
+              <Typography sx={{ fontSize: 24, mb: 2 }}>Stay Motivated!</Typography>
+              <Typography>
+                Remember, every interview is a step forward in your career journey. Keep learning,
+                stay positive, and believe in yourself!
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
