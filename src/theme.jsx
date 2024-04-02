@@ -15,6 +15,9 @@ const theme = createTheme({
 			contrastText: '#000',
 		},
 	},
+	typography: {
+		fontFamily: ['Verdana', 'Roboto', 'sans-serif'].join(','),
+	},
 });
 
 export default theme;

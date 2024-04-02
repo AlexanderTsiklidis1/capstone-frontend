@@ -7,6 +7,7 @@ import LandingPage from './Pages/LandingPage';
 import MeetingPage from './Pages/MeetingPage';
 import ResourcesPage from './Pages/ResourcesPage';
 import CalendlyWidget from './Components/CalendlyWidget';
+import FeedbackPage from './Pages/FeedbackPage';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
@@ -24,6 +25,10 @@ function App() {
 							element={<UserDashboard currentUser={currentUser} />}
 						/>
 						<Route path='/resources' element={<ResourcesPage />} />
+						<Route
+							path='/feedback'
+							element={<FeedbackPage user={currentUser} />}
+						/>
 					</Routes>
 				</Router>
 			</UserProvider>
