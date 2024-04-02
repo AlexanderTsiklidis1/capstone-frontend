@@ -2,22 +2,22 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Providers/UserProvider';
 
-import CalendlyWidget from "./CalendlyWidget";
+import CalendlyWidget from './CalendlyWidget';
 
-import { Card, CardMedia, CardContent, Typography, Stack } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import { Gauge } from '@mui/x-charts/Gauge';
 
 const UserDashboard = () => {
 	const navigate = useNavigate();
 	const user = useContext(UserContext);
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
+	useEffect(() => {
+		if (!user) {
+			navigate('/');
+		}
+	}, [user, navigate]);
 
 	return (
 		<>
@@ -84,7 +84,7 @@ const UserDashboard = () => {
 							sx={{ overflow: 'auto', width: '100%', textAlign: 'center' }}
 						>
 							<Typography>RANK</Typography>
-              <Gauge width={100} height={100} value={60} />
+							<Gauge width={100} height={100} value={60} />
 						</CardContent>
 					</Card>
 				</Grid>
