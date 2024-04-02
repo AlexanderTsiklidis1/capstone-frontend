@@ -4,7 +4,7 @@ import './Button.css';
 import { signInWithGoogle, logOut } from '../Services/Firebase.js';
 import { UserContext } from '../Providers/UserProvider';
 import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -54,23 +54,43 @@ const Navbar = () => {
 					)}
 				</div>
 
-				<div className='logo'>
+				<Stack
+					sx={{
+						display: 'inline-flex',
+						flexDirection: 'row',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<Box>
+						<img
+							src='../src/assets/capstone-transp-logo.png'
+							alt='AceIt Logo'
+							width='45px'
+						/>
+					</Box>
 					<Typography
+						color='primary'
 						sx={{
 							fontFamily: 'Reddit Mono',
 							fontWeight: 900,
 							fontSize: '2rem',
 						}}
 					>
-						<span>
-							<img
-								src='../src/assets/capstone-transp-logo.png'
-								alt='AceIT Logo'
-							/>
-							AceIt
-						</span>
+						Ace
 					</Typography>
-				</div>
+
+					<Typography
+						color='secondary.dark'
+						sx={{
+							fontFamily: 'Reddit Mono',
+							fontWeight: 900,
+							fontSize: '2rem',
+						}}
+					>
+						It
+					</Typography>
+				</Stack>
 
 				<div className='login-signup'>
 					<button

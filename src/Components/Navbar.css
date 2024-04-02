@@ -1,5 +1,6 @@
 .navbar {
 	display: flex;
+	flex-direction: 'row';
 	justify-content: space-between;
 	align-items: center;
 	background-color: white;
@@ -10,17 +11,6 @@
 	top: 0;
 	position: sticky;
 	z-index: 10;
-}
-
-.logo {
-	font-weight: 900;
-	font-size: 2rem;
-	color: #5372ff;
-	font-family: 'Reddit Mono', monospace;
-}
-
-.logo img {
-	width: 45px;
 }
 
 .menu-icon {
