@@ -33,7 +33,8 @@ const LandingPage = () => {
         <Typography variant="h5" sx={{ mb: 4 }}>
           Prepare, practice, and shine in your interviews with live feedback from industry experts.
         </Typography>
-        <Button variant="contained" color="primary" size="large">
+        <Button onClick={signInWithGoogle}
+						className='button login-signup-button' variant="contained" color="primary" size="large">
           Get Started
         </Button>
       </Box>
@@ -82,7 +83,7 @@ const LandingPage = () => {
         <Typography variant="h4" gutterBottom>
           Ready to Take Your Interview Skills to the Next Level?
         </Typography>
-        <Button variant="contained" color="secondary" size="large">
+        <Button onClick={signInWithGoogle}variant="contained" color="secondary" size="large">
           Start Practicing Today
         </Button>
       </Box>
