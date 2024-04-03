@@ -13,6 +13,7 @@ import {
   AccordionDetails,
   Paper,
   Chip,
+  Container,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -51,51 +52,78 @@ const styles = {
 
 const ResourcesPage = () => {
   return (
-    <>
+    <Container maxWidth="md" sx={{ mt: 4 }}>
       <Paper sx={styles.header}>
         <Typography
           variant="h4"
-          component="h1"
           sx={{
+            fontFamily: 'Verdana',
+            fontWeight: '600',
             textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: 30,
+            color: 'primary.dark',
           }}
         >
-          Ace Your Interview
+          Tools for Your Next Interview
         </Typography>
       </Paper>
 
-      <Grid container spacing={2} sx={{ p: 3 }}>
-        <Grid item xs={12}>
-          <Card variant="outlined" sx={styles.card}>
-            <CardContent sx={styles.cardContent}>
-              <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium' }}>
-                Why Interviewers Ask What They Ask
-              </Typography>
-              <List>
-                <ListItem>
-                  <ListItemIcon>
-                    <LightbulbIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText primary="To gauge your problem-solving and critical thinking abilities." />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <QuestionMarkIcon color="secondary" />
-                  </ListItemIcon>
-                  <ListItemText primary="To understand your motivation, passion, and whether you're a cultural fit." />
-                </ListItem>
-                <ListItem>
-                  <ListItemIcon>
-                    <StarBorderIcon color="error" />
-                  </ListItemIcon>
-                  <ListItemText primary="To assess your technical skills, experience, and adaptability to new challenges." />
-                </ListItem>
-              </List>
-            </CardContent>
-          </Card>
-        </Grid>
+      <Grid container spacing={2} justifyContent="center" sx={{ mt: 2 }}>
+      <Grid item xs={12}>
+  <Card variant="outlined" sx={styles.card}>
+    <CardContent sx={styles.cardContent}>
+      <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium' }}>
+        Understanding the Why Behind Interview Questions
+      </Typography>
+      <List>
+        <ListItem>
+          <ListItemIcon>
+            <LightbulbIcon color="primary" />
+          </ListItemIcon>
+          <ListItemText 
+            primary="To gauge your problem-solving and critical thinking abilities." 
+            secondary="Interviewers ask scenario-based questions to understand how you approach complex situations. They're looking for a glimpse into your thought process, assessing your ability to analyze problems, consider various solutions, and apply logical reasoning to navigate challenges."
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LightbulbIcon color="secondary" />
+          </ListItemIcon>
+          <ListItemText 
+            primary="To understand your motivation, passion, and whether you're a cultural fit." 
+            secondary="Questions about your interests, why you chose your profession, or why you want to work at the company are aimed at uncovering your intrinsic motivations. Employers are looking for individuals who are not only qualified but also genuinely interested in their role and aligned with the company's values and culture."
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LightbulbIcon color="primary" />
+          </ListItemIcon>
+          <ListItemText 
+            primary="To assess your technical skills, experience, and adaptability to new challenges." 
+            secondary="Technical questions or those asking about your past experiences serve to validate the skills listed on your resume. Moreover, they provide insights into your ability to learn and adapt to new technologies or methodologies, an essential trait in the ever-evolving tech landscape."
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LightbulbIcon color="secondary" />
+          </ListItemIcon>
+          <ListItemText 
+            primary="To evaluate your communication and teamwork abilities." 
+            secondary="Questions about teamwork, conflict resolution, and communication skills are critical, as they reflect how well you will integrate into the team. Interviewers are interested in your ability to articulate thoughts clearly, listen actively, and collaborate effectively with others towards common goals."
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LightbulbIcon color="primary" />
+          </ListItemIcon>
+          <ListItemText 
+            primary="To determine your resilience and stress management strategies." 
+            secondary="Inquiries about challenges, failures, or stressful situations test your resilience and ability to handle pressure. Interviewers value candidates who can demonstrate growth from past experiences, showcasing adaptability, perseverance, and the capacity to maintain composure under stress."
+          />
+        </ListItem>
+      </List>
+    </CardContent>
+  </Card>
+</Grid>
 
         <Grid item xs={12}>
           <Card variant="outlined" sx={styles.card}>
@@ -104,7 +132,6 @@ const ResourcesPage = () => {
                 Deep Dive: Question Analysis & Responses
               </Typography>
 
-              {/* Sample Question 1 */}
               <Accordion sx={styles.accordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -126,7 +153,6 @@ const ResourcesPage = () => {
                 </AccordionDetails>
               </Accordion>
 
-              {/* Sample Question 2 */}
               <Accordion sx={styles.accordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -148,7 +174,6 @@ const ResourcesPage = () => {
                 </AccordionDetails>
               </Accordion>
 
-              {/* Sample Question 3 */}
               <Accordion sx={styles.accordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -170,7 +195,6 @@ const ResourcesPage = () => {
                 </AccordionDetails>
               </Accordion>
 
-              {/* Sample Question 4 */}
               <Accordion sx={styles.accordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -192,7 +216,6 @@ const ResourcesPage = () => {
                 </AccordionDetails>
               </Accordion>
 
-              {/* Sample Question 5 */}
               <Accordion sx={styles.accordion}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -209,16 +232,15 @@ const ResourcesPage = () => {
                   <Typography sx={{ mb: 1 }}>
                     <Chip label="Strategy" color="secondary" sx={styles.chip} /> Share a story that highlights how you approached the situation with empathy, understanding, and professionalism. Focus on the actions you took to ensure team cohesion and project success without casting blame or negativity on others.
                   </Typography>
-                  <Typography sx={{ mb:1 }}>
-                  <Chip label="Example Response" color="primary" sx={styles.chip} /> "On a project team, I worked with a colleague who had a very different approach to work. Initially, our differences led to tension, but I sought to understand their perspective and find common ground. By focusing on our shared goals and adapting our communication styles, we improved our collaboration and delivered a successful project outcome. This experience taught me the importance of empathy and adaptability in teamwork."
-                  </Typography>
+                  <Chip label="Example Response" color="primary" sx={styles.chip} />
+                    "On a project team, I worked with a colleague who had a very different approach to work. Initially, our differences led to tension, but I sought to understand their perspective and find common ground. By focusing on our shared goals and adapting our communication styles, we improved our collaboration and delivered a successful project outcome. This experience taught me the importance of empathy and adaptability in teamwork."
                 </AccordionDetails>
               </Accordion>
             </CardContent>
           </Card>
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };
 

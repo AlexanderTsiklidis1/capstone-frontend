@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const CalendlyWidget = () => {
   const myCalendly = [
-    "https://calendly.com/alexandertsiklidis1/30min",
+    "https://calendly.com/alexandertsiklidis/aceit-interview",
     
   ];
   const [selected, setSelected] = useState(0);
