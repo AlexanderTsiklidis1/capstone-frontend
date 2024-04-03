@@ -33,12 +33,6 @@ const LandingPage = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Card>
-            <CardMedia
-              component="img"
-              alt="Group studying"
-              height="100%"
-              image="src/assets/interview_pic_landing_page.jpeg"
-            />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Join Our Community
