@@ -1,13 +1,25 @@
-import React from 'react';
+
 import { 
   Button, Typography, Container, Grid, Card, CardContent, 
   Box, useTheme, useMediaQuery 
 } from '@mui/material';
+import { UserContext } from '../Providers/UserProvider';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import { signInWithGoogle, logOut } from '../Services/Firebase';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
+  const user = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/userDashboard');
+    }
+  }, [user, navigate]);
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
