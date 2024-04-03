@@ -71,8 +71,8 @@ const ResourcesPage = () => {
       <Grid item xs={12}>
   <Card variant="outlined" sx={styles.card}>
     <CardContent sx={styles.cardContent}>
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium' }}>
-        Understanding the Why Behind Interview Questions
+      <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium',  textAlign: 'center', }}>
+        The Purpose of the Interview
       </Typography>
       <List>
         <ListItem>
