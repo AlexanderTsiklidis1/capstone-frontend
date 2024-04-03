@@ -8,6 +8,7 @@ import MeetingPage from './Pages/MeetingPage';
 import ResourcesPage from './Pages/ResourcesPage';
 import CalendlyWidget from './Components/CalendlyWidget';
 import FeedbackPage from './Pages/FeedbackPage';
+import RankInfoPage from './Pages/RankInfoPage';
 
 function App() {
 	const [currentUser, setCurrentUser] = useState(null);
@@ -29,6 +30,10 @@ function App() {
 							path='/feedback'
 							element={<FeedbackPage user={currentUser} />}
 						/>
+							{/* <Route
+							path='/ranking'
+							element={<RankInfoPage user={currentUser} />}
+						/> */}
 					</Routes>
 				</Router>
 			</UserProvider>

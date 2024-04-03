@@ -48,8 +48,11 @@ const Navbar = () => {
 								Mock Behavioral Interview Feedback
 							</a>
 							<a href='/resources' onClick={toggleDropdown}>
-								Resources
+								Interview Resources
 							</a>
+							{/* <a href='/ranking' onClick={toggleDropdown}>
+								Ranking System
+							</a> */}
 						</div>
 					)}
 				</div>
