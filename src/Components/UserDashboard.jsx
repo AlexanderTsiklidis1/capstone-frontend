@@ -65,6 +65,9 @@ const UserDashboard = () => {
                 Name: {user?.displayName}
               </Typography>
               <Typography>Email: {user?.email}</Typography>
+              <Typography color="primary" sx={{}}>
+                RANK
+              </Typography>
               <Gauge width={100} height={100} value={60} />
             </CardContent>
           </Card>
@@ -84,7 +87,7 @@ const UserDashboard = () => {
             <CardContent
               sx={{ overflow: "auto", width: "100%", textAlign: "center" }}
             >
-              <Typography>INTERVIEW STATUS </Typography>
+              <Typography color="primary">INTERVIEW STATUS</Typography>
             </CardContent>
           </Card>
         </Grid>
