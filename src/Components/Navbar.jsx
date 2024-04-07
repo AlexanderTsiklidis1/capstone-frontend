@@ -50,6 +50,9 @@ const Navbar = () => {
 							<a href='/resources' onClick={toggleDropdown}>
 								Interview Resources
 							</a>
+							<a href='/zoomMeeting' onClick={toggleDropdown}>
+								Zoom Meeting
+							</a>
 							{/* <a href='/ranking' onClick={toggleDropdown}>
 								Ranking System
 							</a> */}
