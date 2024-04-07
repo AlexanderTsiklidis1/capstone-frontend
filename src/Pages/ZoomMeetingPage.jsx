@@ -1,27 +1,18 @@
-import React from "react";
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ZoomMtg } from "@zoom/meetingsdk";
 import { UserContext } from "../Providers/UserProvider";
 import { useNavigate } from "react-router-dom";
-
-// ZoomMtg.preLoadWasm();
-// ZoomMtg.prepareWebSDK();
 
 function ZoomMeetingPage() {
   const navigate = useNavigate();
   const user = useContext(UserContext);
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
   const authEndpoint = "http://localhost:9000/zoom-signature";
   const sdkKey = "Jrss6ZCZQMKAfiycYmQgWA";
   const meetingNumber = "87153880315";
   const passWord = "T6ApzqLSfUaW0lOkvRsV7TrbnB3sns.1";
-  const userName = `${user.displayName}`;
-  const userEmail = `${user.email}`;
+  const userName = `${user?.displayName}`;
+  const userEmail = `${user?.email}`;
   const leaveUrl = "http://localhost:5173/userDashboard";
 
   const getSignature = (e) => {
