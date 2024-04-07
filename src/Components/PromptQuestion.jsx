@@ -14,7 +14,7 @@ import {
 
 const PromptQuestion = ({ question }) => {
 	const { prompt, id } = question;
-	console.log(prompt);
+	// console.log(prompt);
 	const [grade, setGrade] = useState('');
 
 	const handleChange = (event) => {
