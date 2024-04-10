@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./Providers/UserProvider";
 import Navbar from "./Components/Navbar";
@@ -12,7 +11,6 @@ import RankInfoPage from "./Pages/RankInfoPage";
 import ZoomMeetingPage from "./Pages/ZoomMeetingPage";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
   return (
     <div className="App">
       <header className="App-header"></header>
@@ -22,20 +20,11 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/book-interview" element={<CalendlyWidget />} />
-            <Route
-              path="/userDashboard"
-              element={<UserDashboard currentUser={currentUser} />}
-            />
+            <Route path="/userDashboard" element={<UserDashboard />} />
             <Route path="/resources" element={<ResourcesPage />} />
-            <Route
-              path="/feedback"
-              element={<FeedbackPage user={currentUser} />}
-            />
-            <Route path="/zoomMeeting" element={<ZoomMeetingPage currentUser={currentUser} />} />
-            {/* <Route
-							path='/ranking'
-							element={<RankInfoPage user={currentUser} />}
-						/> */}
+            <Route path="/feedback" element={<FeedbackPage />} />
+            <Route path="/zoomMeeting" element={<ZoomMeetingPage />} />
+            {/* <Route path="/ranking" element={<RankInfoPage />} /> */}
           </Routes>
         </Router>
       </UserProvider>

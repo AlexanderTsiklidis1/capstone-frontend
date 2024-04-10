@@ -1,30 +1,31 @@
-//  this PROVIDER will be responsible for reutrning the
-//  functionality of our  FIREBASE SERVICE.
-import React, { useEffect, useState, createContext } from "react";
-import { auth } from "../Services/Firebase";
+import React, { createContext, useEffect, useState } from 'react';
+import { auth } from '../Services/Firebase'; // Ensure this import matches your file structure
+import { onAuthStateChanged } from "firebase/auth";
 
-// import { db } from '../Services/Firebase';
+export const UserContext = createContext();
 
+export const UserProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')));
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const { email, displayName, photoURL, uid } = user;
+                const userDetails = { email, displayName, photoURL, uid };
+                localStorage.setItem('user', JSON.stringify(userDetails));
+                setCurrentUser(userDetails);
+            } else {
+                localStorage.removeItem('user');
+                setCurrentUser(null);
+            }
+        });
 
+        return () => unsubscribe();
+    }, []);
 
-export const UserContext = createContext(null);
-
-export const UserProvider = (props) => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const { email, displayName, photoURL, uid } = user;
-        setUser({ email, displayName, photoURL, uid });
-      } else {
-        setUser(null);
-      }
-    });
-  }, []);
-  return (
-    <UserContext.Provider value={user}>
-      <div>{props.children}</div>
-    </UserContext.Provider>
-  );
+    return (
+        <UserContext.Provider value={currentUser}>
+            {children}
+        </UserContext.Provider>
+    );
 };
