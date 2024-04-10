@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
-
+import { Card, CardMedia, CardContent, Typography, Button, List, ListItem, ListItemText } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import { Gauge } from "@mui/x-charts/Gauge";
 const API = import.meta.env.VITE_BASE_URL;
 import CalendlyWidget from "./CalendlyWidget";
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-
-import { Gauge } from "@mui/x-charts/Gauge";
 
 //for a user(who is logged in via email) we want to display a list of events booked with their email on the user dashboard
 //
@@ -122,8 +120,42 @@ console.log(user.email)
             <CardContent>
               <CalendlyWidget />
             </CardContent>
+            
           </Card>
         </Grid>
+      </Grid>
+      <Grid xs={12} sx={{ mx: 1, mb: 2 }}>
+        <Card
+          sx={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            border: 1,
+            borderColor: "#F3B6B6",
+            borderStyle: "solid",
+            overflow: "auto",
+            p: 3,
+          }}
+        >
+          <Typography variant="h5" color="primary" gutterBottom>
+            Upcoming Events
+          </Typography>
+          <List>
+            {events.map((event) => (
+              <ListItem
+                key={event.id}
+                button
+                component={Link}
+                to={`/events/${event.id}`}
+                sx={{ mb: 1, border: 1, borderColor: "#cccccc", borderRadius: "5px" }}
+              >
+                <ListItemText
+                  primary={`Meeting with ${event.invitee_name}`}
+                  secondary={`Starts at: ${new Date(event.start_time).toLocaleString()}`}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Card>
       </Grid>
     </>
   );
