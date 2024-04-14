@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
+import { useCurrentEvent } from "../Providers/CurrentEventProvider";
 import {
   Card,
   CardMedia,
@@ -16,23 +17,15 @@ import { Gauge } from "@mui/x-charts/Gauge";
 const API = import.meta.env.VITE_BASE_URL;
 import CalendlyWidget from "./CalendlyWidget";
 
-//for a user(who is logged in via email) we want to display a list of events booked with their email on the user dashboard
-//
-
 const UserDashboard = () => {
   const navigate = useNavigate();
   const user = useContext(UserContext);
   const [events, setEvents] = useState([]);
+  const { setCurrentEvent } = useCurrentEvent();
 
-  const handleNavigateToZoom = (meetingId, password) => {
-    if (!meetingId) {
-      console.error("Invalid meeting ID", { meetingId });
-      return;
-    }
-    const safePassword = password === null ? "" : encodeURIComponent(password);
-    navigate(
-      `/zoomMeeting?meetingNumber=${meetingId}&password=${safePassword}`
-    );
+  const handleEventClick = (event) => {
+    setCurrentEvent(event);
+    navigate(`/zoomMeeting?meetingNumber=${event.meeting_id}&password=${encodeURIComponent(event.password)}`);
   };
 
   const fetchEvents = () => {
@@ -47,11 +40,11 @@ const UserDashboard = () => {
       },
       body: JSON.stringify({ email: user.email }),
     })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log("Events fetched:", responseJson);
         setEvents(responseJson);
-      });
+    });
   };
 
   useEffect(() => {
@@ -69,15 +62,10 @@ const UserDashboard = () => {
           pt: 5,
         }}
       >
-        {user?.displayName}&#39;s Dashboard
+        {user?.displayName}'s Dashboard
       </Typography>
 
-      <Grid
-        container
-        columnSpacing={4}
-        rowSpacing={3}
-        sx={{ my: 2, mx: "auto" }}
-      >
+      <Grid container columnSpacing={4} rowSpacing={3} sx={{ my: 2, mx: "auto" }}>
         <Grid xs={6} sx={{ mx: 1, maxWidth: "100%" }}>
           <Card
             sx={{
@@ -98,35 +86,11 @@ const UserDashboard = () => {
               image={user?.photoURL}
               title="User Profile Picture"
             />
-
             <CardContent>
-              <Typography sx={{ fontSize: 20 }}>
-                Name: {user?.displayName}
-              </Typography>
+              <Typography sx={{ fontSize: 20 }}>Name: {user?.displayName}</Typography>
               <Typography>Email: {user?.email}</Typography>
-              <Typography color="primary" sx={{}}>
-                RANK
-              </Typography>
+              <Typography color="primary">RANK</Typography>
               <Gauge width={100} height={100} value={60} />
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid xs={5} sx={{ mx: 1 }}>
-          <Card
-            sx={{
-              border: 1,
-              minWidth: "35%",
-              borderColor: "#F3B6B6",
-              borderStyle: "solid",
-              overflow: "auto",
-              px: 2,
-            }}
-          >
-            <CardContent
-              sx={{ overflow: "auto", width: "100%", textAlign: "center" }}
-            >
-              <Typography color="primary">INTERVIEW STATUS</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -157,9 +121,7 @@ const UserDashboard = () => {
                 <ListItem
                   key={event.id}
                   button
-                  onClick={() =>
-                    handleNavigateToZoom(event.meeting_id, event.password)
-                  }
+                  onClick={() => handleEventClick(event)}
                   sx={{
                     mb: 1,
                     border: 1,
@@ -168,15 +130,14 @@ const UserDashboard = () => {
                   }}
                 >
                   <ListItemText
-                    primary={`Meeting with ${event.invitee_name}`}
-                    secondary={`Starts at: ${new Date(
-                      event.start_time
-                    ).toLocaleString()}`}
+                    primary={`Meeting with ${event.inviter_name === user.displayName ? event.invitee_name : event.inviter_name}`}
+                    secondary={`Starts at: ${new Date(event.start_time).toLocaleString()}`}
                   />
                 </ListItem>
               ))}
             </List>
           </Card>
+
           <Card
             sx={{
               maxWidth: "100%",
@@ -206,7 +167,6 @@ const UserDashboard = () => {
           </Card>
         </Grid>
       </Grid>
-      <Grid xs={12} sx={{ mx: 1, mb: 2 }}></Grid>
     </>
   );
 };
