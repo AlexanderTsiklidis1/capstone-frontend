@@ -77,6 +77,7 @@ const InterviewerGradingForm = ({ user }) => {
 			};
 			setQuestionId();
 			console.log(feedback);
+			console.log(data);
 		},
 		[feedback]
 	);
@@ -93,8 +94,16 @@ const InterviewerGradingForm = ({ user }) => {
 			.catch((error) => console.log(error));
 	}, []);
 
+	console.log(prompts);
+	console.log(randomQuestions);
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(feedback);
+	};
+
 	return (
-		<div>
+		<form onSubmit={handleSubmit}>
 			<FormControl>
 				<FormLabel>Fellow Name</FormLabel>
 				<TextField type='text' sx={{ mb: 1 }} />
@@ -112,11 +121,12 @@ const InterviewerGradingForm = ({ user }) => {
 						my: 3,
 						color: 'primary',
 					}}
+					type='submit'
 				>
 					Submit
 				</Button>
 			</FormControl>
-		</div>
+		</form>
 	);
 };
 
