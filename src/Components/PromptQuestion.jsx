@@ -9,6 +9,7 @@ import {
 	InputLabel,
 	MenuItem,
 	Select,
+	TextField,
 	Typography,
 } from '@mui/material';
 
@@ -64,7 +65,7 @@ const PromptQuestion = ({ question }) => {
 							value={grade}
 							label='Grade'
 							onChange={handleChange}
-							sx={{ color: selectColor, fontWeight: 600 }}
+							sx={{ color: selectColor, fontWeight: 600, mb: 3 }}
 						>
 							<MenuItem value={6.25} sx={{ color: 'green', fontWeight: 600 }}>
 								Exceptional
@@ -82,6 +83,13 @@ const PromptQuestion = ({ question }) => {
 								Novice
 							</MenuItem>
 						</Select>
+						<TextField
+							id='interviewer-comment'
+							label='Comment'
+							multiline
+							placeholder='Comment'
+							sx={{ mb: 1 }}
+						/>
 					</FormControl>
 				</Box>
 			</CardContent>
