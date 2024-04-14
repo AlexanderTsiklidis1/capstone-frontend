@@ -13,25 +13,13 @@ import {
 	Typography,
 } from '@mui/material';
 
-const PromptQuestion = ({ question }) => {
+const PromptQuestion = ({
+	question,
+	questionNumber,
+	updateQuestionFeedback,
+}) => {
 	const { prompt, id } = question;
 	const [grade, setGrade] = useState('');
-	const [comment, setComment] = useState('');
-
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-
-		switch (name) {
-			case 'grade':
-				setGrade(value);
-				break;
-			case 'comment':
-				setComment(value);
-				break;
-			default:
-				break;
-		}
-	};
 
 	const selectColor =
 		grade === 6.25
@@ -41,6 +29,13 @@ const PromptQuestion = ({ question }) => {
 			: grade === 3.125
 			? 'darkorange'
 			: 'red';
+
+	const handleFeedbackChange = (e, feedbackType) => {
+		if (feedbackType === 'grade') {
+			setGrade(e.target.value);
+		}
+		updateQuestionFeedback(questionNumber, feedbackType, e.target.value);
+	};
 
 	return (
 		<Card
@@ -59,7 +54,7 @@ const PromptQuestion = ({ question }) => {
 						fontWeight: 700,
 					}}
 				>
-					Question {id}:
+					Question {questionNumber}:
 				</Typography>{' '}
 				{prompt}
 				<Box
@@ -75,9 +70,10 @@ const PromptQuestion = ({ question }) => {
 							id='grade-select'
 							value={grade}
 							label='Grade'
-							name='grade'
-							onChange={handleChange}
 							sx={{ color: selectColor, fontWeight: 600, mb: 3 }}
+							onChange={(e) => {
+								handleFeedbackChange(e, 'grade');
+							}}
 						>
 							<MenuItem value={6.25} sx={{ color: 'green', fontWeight: 600 }}>
 								Exceptional
@@ -104,6 +100,26 @@ const PromptQuestion = ({ question }) => {
 							placeholder='Comment'
 							onChange={handleChange}
 							sx={{ mb: 1 }}
+						/>
+					</FormControl>
+				</Box>
+				<Box
+					sx={{
+						// minWidth: 150,
+						mt: 2,
+						// border: 1,
+					}}
+				>
+					<FormControl fullWidth>
+						<TextField
+							id='interviewer-comments'
+							label='Interviewer Comments'
+							multiline
+							variant='outlined'
+							onChange={(e) => {
+								handleFeedbackChange(e, 'notes');
+							}}
+							// placeholder='Interviewer comments...'
 						/>
 					</FormControl>
 				</Box>

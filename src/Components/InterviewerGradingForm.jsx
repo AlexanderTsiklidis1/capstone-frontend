@@ -1,17 +1,115 @@
 /* eslint-disable react/prop-types */
-import { FormLabel, FormControl, TextField, Button } from '@mui/material';
-import { useState, useEffect, useCallback, useContext } from 'react';
-import { UserContext } from "../Providers/UserProvider";
-import { useCurrentEvent } from "../Providers/CurrentEventProvider";
 
-import PromptQuestions from './PromptQuestions';
+import { useState, useEffect, useCallback, useContext } from 'react';
+import { UserContext } from '../Providers/UserProvider';
+import { useCurrentEvent } from '../Providers/CurrentEventProvider';
+import {
+	FormLabel,
+	FormControl,
+	TextField,
+	Button,
+	Stack,
+} from '@mui/material';
+
+import PromptQuestion from './PromptQuestion';
 
 const API = import.meta.env.VITE_BASE_URL;
+
+const PromptQuestions = ({ prompts, feedback, setFeedback }) => {
+	const [normalizedPrompts, setNormalizedPrompts] = useState({});
+
+	useEffect(() => {
+		const normalizedPromptObject = {};
+
+		prompts.forEach((prompt) => {
+			normalizedPromptObject[prompt.id] = prompt;
+		});
+		setNormalizedPrompts(normalizedPromptObject);
+	}, [normalizedPrompts, prompts]);
+
+	const updateQuestionFeedback = (questionNumber, feedbackType, value) => {
+		setFeedback({
+			...feedback,
+			[`prompt_${questionNumber}_${feedbackType}`]: value,
+		});
+	};
+
+	// const normalizePrompts = () => {
+	// 	const promptRecord = {};
+
+	// 	console.log(promptRecord);
+	// 	return promptRecord;
+	// };
+
+	// const normalizedPrompts = normalizePrompts();
+	// console.log(normalizePrompts());
+
+	return (
+		<>
+			<Stack flexDirection='column' spacing={3} sx={{ mt: 3 }}>
+				{Object.keys(normalizedPrompts).length && (
+					<>
+						<PromptQuestion
+							key={feedback?.prompt_1_id}
+							question={normalizedPrompts[feedback?.prompt_1_id]}
+							questionNumber={1}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_2_id}
+							question={normalizedPrompts[feedback?.prompt_2_id]}
+							questionNumber={2}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_3_id}
+							question={normalizedPrompts[feedback?.prompt_3_id]}
+							questionNumber={3}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_4_id}
+							question={normalizedPrompts[feedback?.prompt_4_id]}
+							questionNumber={4}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_5_id}
+							question={normalizedPrompts[feedback?.prompt_5_id]}
+							questionNumber={5}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_6_id}
+							question={normalizedPrompts[feedback?.prompt_6_id]}
+							questionNumber={6}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_7_id}
+							question={normalizedPrompts[feedback?.prompt_7_id]}
+							questionNumber={7}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+						<PromptQuestion
+							key={feedback?.prompt_8_id}
+							question={normalizedPrompts[feedback?.prompt_8_id]}
+							questionNumber={8}
+							updateQuestionFeedback={updateQuestionFeedback}
+						/>
+					</>
+				)}
+			</Stack>
+		</>
+	);
+	{
+	}
+};
 
 const InterviewerGradingForm = () => {
 	const user = useContext(UserContext);
 	const { currentEvent } = useCurrentEvent();
-	console.log(currentEvent)
+	console.log(currentEvent);
 	const [prompts, setPrompts] = useState([]);
 	const [fellowName, setFellowName] = useState('');
 
@@ -47,8 +145,7 @@ const InterviewerGradingForm = () => {
 			setFellowName(currentEvent.invitee_name);
 		}
 	}, [currentEvent]);
-	
-	
+
 	const randomQuestions = useCallback(
 		(data) => {
 			const questionCategories = {
@@ -89,7 +186,6 @@ const InterviewerGradingForm = () => {
 				});
 			};
 			setQuestionId();
-			console.log(feedback);
 		},
 		[feedback]
 	);
@@ -99,32 +195,39 @@ const InterviewerGradingForm = () => {
 			.then((response) => response.json())
 			.then((responseJSON) => {
 				setPrompts(responseJSON);
-				console.log(responseJSON);
 				randomQuestions(responseJSON);
 			})
-
 			.catch((error) => console.log(error));
 	}, []);
 
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log('FEEDBACK', feedback);
+	};
+
 	return (
-		<div>
+		<form onSubmit={handleSubmit}>
 			<FormControl>
-			<FormLabel>Fellow Name</FormLabel>
-    <TextField 
-        type='text' 
-        sx={{ mb: 1 }} 
-        value={fellowName}
-		onChange={(e) => setFellowName(e.target.value)}
-    />
+				<FormLabel>Fellow Name</FormLabel>
+				<TextField
+					type='text'
+					sx={{ mb: 1 }}
+					value={fellowName}
+					onChange={(e) => setFellowName(e.target.value)}
+				/>
 
-    <FormLabel>Interviewer Name</FormLabel>
-    <TextField 
-        type='text' 
-        sx={{ mb: 1 }} 
-        value={user ? user.displayName : 'Loading...'}
-    />
+				<FormLabel>Interviewer Name</FormLabel>
+				<TextField
+					type='text'
+					sx={{ mb: 1 }}
+					value={user ? user.displayName : 'Loading...'}
+				/>
 
-				<PromptQuestions prompts={prompts} />
+				<PromptQuestions
+					prompts={prompts}
+					setFeedback={setFeedback}
+					feedback={feedback}
+				/>
 
 				<Button
 					variant='contained'
@@ -134,11 +237,12 @@ const InterviewerGradingForm = () => {
 						my: 3,
 						color: 'primary',
 					}}
+					type='submit'
 				>
 					Submit
 				</Button>
 			</FormControl>
-		</div>
+		</form>
 	);
 };
 
