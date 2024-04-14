@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
 import { FormLabel, FormControl, TextField, Button } from '@mui/material';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
+import { UserContext } from "../Providers/UserProvider";
+import { useCurrentEvent } from "../Providers/CurrentEventProvider";
 
 import PromptQuestions from './PromptQuestions';
 
 const API = import.meta.env.VITE_BASE_URL;
 
-const InterviewerGradingForm = ({ user }) => {
+const InterviewerGradingForm = () => {
+	const user = useContext(UserContext);
+	const { currentEvent } = useCurrentEvent();
+	console.log(currentEvent)
 	const [prompts, setPrompts] = useState([]);
+	const [fellowName, setFellowName] = useState('');
 
 	const [feedback, setFeedback] = useState({
 		prompt_1_id: null,
@@ -36,6 +42,13 @@ const InterviewerGradingForm = ({ user }) => {
 		prompt_8_notes: '',
 	});
 
+	useEffect(() => {
+		if (currentEvent && currentEvent.invitee_name) {
+			setFellowName(currentEvent.invitee_name);
+		}
+	}, [currentEvent]);
+	
+	
 	const randomQuestions = useCallback(
 		(data) => {
 			const questionCategories = {
@@ -96,11 +109,20 @@ const InterviewerGradingForm = ({ user }) => {
 	return (
 		<div>
 			<FormControl>
-				<FormLabel>Fellow Name</FormLabel>
-				<TextField type='text' sx={{ mb: 1 }} />
+			<FormLabel>Fellow Name</FormLabel>
+    <TextField 
+        type='text' 
+        sx={{ mb: 1 }} 
+        value={fellowName}
+		onChange={(e) => setFellowName(e.target.value)}
+    />
 
-				<FormLabel>Interviewer Name</FormLabel>
-				<TextField type='text' sx={{ mb: 1 }} value={user?.displayName} />
+    <FormLabel>Interviewer Name</FormLabel>
+    <TextField 
+        type='text' 
+        sx={{ mb: 1 }} 
+        value={user ? user.displayName : 'Loading...'}
+    />
 
 				<PromptQuestions prompts={prompts} />
 

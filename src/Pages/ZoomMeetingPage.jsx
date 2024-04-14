@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ZoomMtg } from "@zoom/meetingsdk";
 import { UserContext } from "../Providers/UserProvider";
-import { useNavigate } from "react-router-dom";
+import { useCurrentEvent } from "../Providers/CurrentEventProvider";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "../Components/Button.css";
-import { useSearchParams } from "react-router-dom";
 
 function ZoomMeetingPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const user = useContext(UserContext);
+  const { currentEvent } = useCurrentEvent();
+  console.log(currentEvent)
 
   const meetingNumber = searchParams.get("meetingNumber");
   const passWord = searchParams.get("password") || "defaultPassword";
@@ -17,14 +19,19 @@ function ZoomMeetingPage() {
   const sdkKey = "Jrss6ZCZQMKAfiycYmQgWA";
   const userName = `${user?.displayName}`;
   const userEmail = `${user?.email}`;
-  const leaveUrl = "http://localhost:5173/userDashboard";
+
+  const leaveUrl =
+    user?.displayName === currentEvent?.inviter_name
+      ? "http://localhost:5173/feedback"
+      : "http://localhost:5173/userDashboard";
+  const role = user?.displayName === currentEvent?.inviter_name ? 1 : 0;
 
   const getSignature = (e) => {
     e.preventDefault();
 
     const meetingData = {
       meetingNumber: meetingNumber,
-      role: 0,
+      role: role,
     };
 
     fetch(authEndpoint, {
@@ -70,21 +77,20 @@ function ZoomMeetingPage() {
     <div
       className="App"
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh', // 100% of the viewport height
-        textAlign: 'center'
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+        textAlign: "center",
       }}
     >
-      <h1>Join Zoom Meeting With {}</h1>
+      <h1>Join Zoom Meeting</h1>
       <button className="button" onClick={getSignature}>
         Join Meeting
       </button>
     </div>
   );
-  
 }
 
 export default ZoomMeetingPage;
