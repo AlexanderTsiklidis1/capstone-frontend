@@ -18,6 +18,9 @@ const theme = createTheme({
 	typography: {
 		fontFamily: ['Verdana', 'Roboto', 'sans-serif'].join(','),
 	},
+	custom: {
+        cardHeight: '800px' 
+    }
 });
 
 export default theme;

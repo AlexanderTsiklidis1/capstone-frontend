@@ -1,7 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../Providers/UserProvider";
-import { Card, CardMedia, CardContent, Typography, Button, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Gauge } from "@mui/x-charts/Gauge";
 const API = import.meta.env.VITE_BASE_URL;
@@ -14,23 +23,39 @@ const UserDashboard = () => {
   const navigate = useNavigate();
   const user = useContext(UserContext);
   const [events, setEvents] = useState([]);
-console.log(user.email)
-  useEffect(() => {
+
+  const handleNavigateToZoom = (meetingId, password) => {
+    if (!meetingId) {
+      console.error("Invalid meeting ID", { meetingId });
+      return;
+    }
+    const safePassword = password === null ? "" : encodeURIComponent(password);
+    navigate(
+      `/zoomMeeting?meetingNumber=${meetingId}&password=${safePassword}`
+    );
+  };
+
+  const fetchEvents = () => {
     if (!user) {
       navigate("/");
+      return;
     }
     fetch(`${API}/interviews`, {
-		method: "POST",
-		headers: {
-			'Content-Type': 'application/json',
-		  },
-		body: JSON.stringify({email: user.email})
-})
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: user.email }),
+    })
       .then((response) => response.json())
       .then((responseJson) => {
-        setEvents(responseJson);
         console.log(responseJson);
+        setEvents(responseJson);
       });
+  };
+
+  useEffect(() => {
+    fetchEvents();
   }, [user, navigate]);
 
   return (
@@ -109,8 +134,54 @@ console.log(user.email)
         <Grid xs={12} sx={{ mx: 1, mb: 2 }}>
           <Card
             sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               maxWidth: "100%",
-              maxHeight: "60%",
+              maxHeight: "100%",
+              border: 1,
+              borderColor: "#F3B6B6",
+              borderStyle: "solid",
+              overflow: "auto",
+              p: 3,
+            }}
+          >
+            <Typography variant="h5" color="primary" gutterBottom>
+              Upcoming Events
+            </Typography>
+            <Button onClick={fetchEvents} variant="contained" color="primary">
+              Refresh Events
+            </Button>
+            <List>
+              {events.map((event) => (
+                <ListItem
+                  key={event.id}
+                  button
+                  onClick={() =>
+                    handleNavigateToZoom(event.meeting_id, event.password)
+                  }
+                  sx={{
+                    mb: 1,
+                    border: 1,
+                    borderColor: "#cccccc",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <ListItemText
+                    primary={`Meeting with ${event.invitee_name}`}
+                    secondary={`Starts at: ${new Date(
+                      event.start_time
+                    ).toLocaleString()}`}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Card>
+          <Card
+            sx={{
+              maxWidth: "100%",
+              minHeight: "800px",
+              maxHeight: "100%",
               border: 1,
               borderColor: "#F3B6B6",
               borderStyle: "solid",
@@ -118,45 +189,24 @@ console.log(user.email)
             }}
           >
             <CardContent>
+              <Typography
+                variant="h5"
+                color="primary"
+                gutterBottom
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                Book Meeting
+              </Typography>
               <CalendlyWidget />
             </CardContent>
-            
           </Card>
         </Grid>
       </Grid>
-      <Grid xs={12} sx={{ mx: 1, mb: 2 }}>
-        <Card
-          sx={{
-            maxWidth: "100%",
-            maxHeight: "100%",
-            border: 1,
-            borderColor: "#F3B6B6",
-            borderStyle: "solid",
-            overflow: "auto",
-            p: 3,
-          }}
-        >
-          <Typography variant="h5" color="primary" gutterBottom>
-            Upcoming Events
-          </Typography>
-          <List>
-            {events.map((event) => (
-              <ListItem
-                key={event.id}
-                button
-                component={Link}
-                to={`/events/${event.id}`}
-                sx={{ mb: 1, border: 1, borderColor: "#cccccc", borderRadius: "5px" }}
-              >
-                <ListItemText
-                  primary={`Meeting with ${event.invitee_name}`}
-                  secondary={`Starts at: ${new Date(event.start_time).toLocaleString()}`}
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Card>
-      </Grid>
+      <Grid xs={12} sx={{ mx: 1, mb: 2 }}></Grid>
     </>
   );
 };
