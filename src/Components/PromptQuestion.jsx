@@ -20,6 +20,7 @@ const PromptQuestion = ({
 }) => {
 	const { prompt, id } = question;
 	const [grade, setGrade] = useState('');
+	const [comment, setComment] = useState('');
 
 	const selectColor =
 		grade === 6.25
@@ -33,6 +34,9 @@ const PromptQuestion = ({
 	const handleFeedbackChange = (e, feedbackType) => {
 		if (feedbackType === 'grade') {
 			setGrade(e.target.value);
+		}
+		if (feedbackType === 'notes') {
+			setComment(e.target.value);
 		}
 		updateQuestionFeedback(questionNumber, feedbackType, e.target.value);
 	};
@@ -98,7 +102,9 @@ const PromptQuestion = ({
 							value={comment}
 							multiline
 							placeholder='Comment'
-							onChange={handleChange}
+							onChange={(e) => {
+								handleFeedbackChange(e, 'notes');
+							}}
 							sx={{ mb: 1 }}
 						/>
 					</FormControl>
