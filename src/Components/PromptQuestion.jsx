@@ -15,11 +15,22 @@ import {
 
 const PromptQuestion = ({ question }) => {
 	const { prompt, id } = question;
-	// console.log(prompt);
 	const [grade, setGrade] = useState('');
+	const [comment, setComment] = useState('');
 
 	const handleChange = (event) => {
-		setGrade(event.target.value);
+		const { name, value } = event.target;
+
+		switch (name) {
+			case 'grade':
+				setGrade(value);
+				break;
+			case 'comment':
+				setComment(value);
+				break;
+			default:
+				break;
+		}
 	};
 
 	const selectColor =
@@ -64,6 +75,7 @@ const PromptQuestion = ({ question }) => {
 							id='grade-select'
 							value={grade}
 							label='Grade'
+							name='grade'
 							onChange={handleChange}
 							sx={{ color: selectColor, fontWeight: 600, mb: 3 }}
 						>
@@ -86,8 +98,11 @@ const PromptQuestion = ({ question }) => {
 						<TextField
 							id='interviewer-comment'
 							label='Comment'
+							name='comment'
+							value={comment}
 							multiline
 							placeholder='Comment'
+							onChange={handleChange}
 							sx={{ mb: 1 }}
 						/>
 					</FormControl>
