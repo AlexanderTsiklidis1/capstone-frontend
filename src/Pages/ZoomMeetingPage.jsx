@@ -1,16 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 import { ZoomMtg } from "@zoom/meetingsdk";
 import { UserContext } from "../Providers/UserProvider";
 import { useNavigate } from "react-router-dom";
+import "../Components/Button.css";
+import { useSearchParams } from "react-router-dom";
 
 function ZoomMeetingPage() {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const user = useContext(UserContext);
 
+  const meetingNumber = searchParams.get("meetingNumber");
+  const passWord = searchParams.get("password") || "defaultPassword";
+
   const authEndpoint = "http://localhost:9000/zoom-signature";
   const sdkKey = "Jrss6ZCZQMKAfiycYmQgWA";
-  const meetingNumber = "87153880315";
-  const passWord = "T6ApzqLSfUaW0lOkvRsV7TrbnB3sns.1";
   const userName = `${user?.displayName}`;
   const userEmail = `${user?.email}`;
   const leaveUrl = "http://localhost:5173/userDashboard";
@@ -63,11 +67,24 @@ function ZoomMeetingPage() {
   };
 
   return (
-    <div className="App">
-      <h1>Join Zoom Meeting</h1>
-      <button onClick={getSignature}>Join Meeting</button>
+    <div
+      className="App"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh', // 100% of the viewport height
+        textAlign: 'center'
+      }}
+    >
+      <h1>Join Zoom Meeting With {}</h1>
+      <button className="button" onClick={getSignature}>
+        Join Meeting
+      </button>
     </div>
   );
+  
 }
 
 export default ZoomMeetingPage;
