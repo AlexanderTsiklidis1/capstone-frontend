@@ -14,6 +14,12 @@ const theme = createTheme({
 			dark: '#F28B33',
 			contrastText: '#000',
 		},
+		success: {
+			light: '#4caf50',
+			main: '#4caf50',
+			dark: '#1b5e20',
+			contrastText: '#000',
+		}
 	},
 	typography: {
 		fontFamily: ['Verdana', 'Roboto', 'sans-serif'].join(','),

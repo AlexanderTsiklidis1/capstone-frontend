@@ -11,70 +11,69 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Paper,
   Chip,
   Container,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const styles = {
   card: {
-    mb: 2,
-    borderColor: 'primary.main',
+    mb: 1, // Margin bottom for the card
+    borderColor: 'primary.main', // Border color from the theme
+    borderRadius: 2, // Rounded corners for the card
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)', // Shadow effect for depth
   },
   cardContent: {
+    padding: '8px 16px', // Padding inside the card
     '&:last-child': {
-      paddingBottom: 2,
+      paddingBottom: '8px', // Padding at the bottom of the card
     },
-  },
-  header: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    color: 'white',
-    padding: '10px 0',
   },
   accordion: {
-    backgroundColor: '#f0f0f0',
-    boxShadow: 'none',
+    backgroundColor: '#f0f0f0', // Background color for accordion
+    boxShadow: 'none', // No shadow for accordion
     '&:before': {
-      display: 'none',
+      display: 'none', // Remove the pseudo-element
     },
+    margin: '4px 0', // Margin top and bottom for the accordion
   },
   accordionSummary: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#e0e0e0', // Background color for accordion summary
+    padding: '8px', // Padding for the accordion summary
+    borderRadius: '4px', // Rounded corners for the accordion summary
   },
   chip: {
-    mr: 1,
+    mr: 1, // Margin right for the chip
+    fontSize: '0.875rem', // Font size for the chip
   },
 };
 
 const ResourcesPage = () => {
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Paper sx={styles.header}>
-        <Typography
-          variant="h4"
-          sx={{
-            fontFamily: 'Verdana',
-            fontWeight: '600',
-            textAlign: 'center',
-            color: 'primary.dark',
-          }}
-        >
-          Tools for Your Next Interview
-        </Typography>
-      </Paper>
-
-      <Grid container spacing={2} justifyContent="center" sx={{ mt: 2 }}>
-      <Grid item xs={12}>
-  <Card variant="outlined" sx={styles.card}>
-    <CardContent sx={styles.cardContent}>
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium',  textAlign: 'center', }}>
-        The Purpose of the Interview
+    <Container maxWidth={false}>
+      {/* ... rest of the code remains unchanged */}
+      <Typography
+        variant="h4"
+        sx={{
+          fontFamily: 'Verdana',
+          fontWeight: '600',
+          textAlign: 'center',
+          color: 'primary.dark',
+          marginBottom: '24px',
+        }}
+      >
+        Tools for Your Next Interview
       </Typography>
-      <List>
+
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12}>
+          <Card variant="outlined" sx={styles.card}>
+            <CardContent sx={styles.cardContent}>
+              <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold', textAlign: 'center', color: "secondary.dark" }}>
+                The Purpose of the Interview
+              </Typography>
+              <List>
         <ListItem>
           <ListItemIcon>
             <LightbulbIcon color="primary" />
@@ -128,7 +127,7 @@ const ResourcesPage = () => {
         <Grid item xs={12}>
           <Card variant="outlined" sx={styles.card}>
             <CardContent sx={styles.cardContent}>
-              <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium' }}>
+              <Typography variant="h5" sx={{ mb: 2, fontWeight: 'medium', color: 'primary.dark' }}>
                 Deep Dive: Question Analysis & Responses
               </Typography>
 
@@ -143,12 +142,12 @@ const ResourcesPage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography sx={{ mb: 1 }}>
-                    <Chip label="Motivation" color="primary" sx={styles.chip} /> This question aims to assess leadership skills, time management, and stress management.
+                    <Chip label="Goal" color="primary" sx={styles.chip} /> This question aims to assess leadership skills, time management, and stress management.
                   </Typography>
                   <Typography sx={{ mb: 1 }}>
                     <Chip label="Strategy" color="secondary" sx={styles.chip} /> Focus on a specific example, discuss the challenges faced, your actions, leadership style, and the successful outcome.
                   </Typography>
-                  <Chip label="Example Response" color="primary" sx={styles.chip} />
+                  <Chip label="Example Response" color="success" sx={styles.chip} />
                     "In my previous role, we were tasked with delivering a client project within a significantly shortened timeframe. I led the team by breaking down the project into manageable tasks, setting clear milestones, and holding daily check-ins to monitor progress and address any issues promptly. Despite the pressure, we successfully met the deadline, and the client commended our efficiency and quality of work. This experience taught me the value of clear communication and proactive problem-solving under pressure."
                 </AccordionDetails>
               </Accordion>
@@ -164,12 +163,12 @@ const ResourcesPage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography sx={{ mb: 1 }}>
-                    <Chip label="Motivation" color="primary" sx={styles.chip} /> Interviewers are interested in your problem-solving process and creativity.
+                    <Chip label="Goal" color="primary" sx={styles.chip} /> Interviewers are interested in your problem-solving process and creativity.
                   </Typography>
                   <Typography sx={{ mb: 1 }}>
                     <Chip label="Strategy" color="secondary" sx={styles.chip} /> Highlight a specific problem, your thought process, the solution you devised, and the result. Emphasize your analytical and critical thinking skills.
                   </Typography>
-                  <Chip label="Example Response" color="primary" sx={styles.chip} />
+                  <Chip label="Example Response" color="success" sx={styles.chip} />
                    "When faced with a critical software bug before product launch, I systematically isolated the issue, researched potential solutions, and collaborated with the team to implement a fix. This methodical approach not only resolved the issue quickly but also improved our product's reliability."
                 </AccordionDetails>
               </Accordion>
@@ -185,12 +184,12 @@ const ResourcesPage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography sx={{ mb: 1 }}>
-                    <Chip label="Motivation" color="primary" sx={styles.chip} /> This question probes your goal-setting, planning, and execution abilities.
+                    <Chip label="Goal" color="primary" sx={styles.chip} /> This question probes your goal-setting, planning, and execution abilities.
                   </Typography>
                   <Typography sx={{ mb: 1 }}>
                     <Chip label="Strategy" color="secondary" sx={styles.chip} /> Discuss a meaningful goal, how you planned for it, the steps you took, any obstacles you overcame, and the outcome. Reflect on what this achievement demonstrates about your work ethic and determination.
                   </Typography>
-                  <Chip label="Example Response" color="primary" sx={styles.chip} />
+                  <Chip label="Example Response" color="success" sx={styles.chip} />
                     "I set a goal to increase our department's efficiency by 20%. By analyzing our processes, implementing new software tools, and providing training, we surpassed our goal, reaching a 25% efficiency improvement within six months."
                 </AccordionDetails>
               </Accordion>
@@ -206,12 +205,12 @@ const ResourcesPage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography sx={{ mb: 1 }}>
-                    <Chip label="Motivation" color="primary" sx={styles.chip} /> To understand your resilience, adaptability, and whether you can learn and grow from feedback.
+                    <Chip label="Goal" color="primary" sx={styles.chip} /> To understand your resilience, adaptability, and whether you can learn and grow from feedback.
                   </Typography>
                   <Typography sx={{ mb: 1 }}>
                     <Chip label="Strategy" color="secondary" sx={styles.chip} /> Provide examples that demonstrate your ability to receive feedback constructively, including what you learned from the experience and how it led to improvement or change in your behavior or work.
                   </Typography>
-                  <Chip label="Example Response" color="primary" sx={styles.chip} />
+                  <Chip label="Example Response" color="success" sx={styles.chip} />
                      "I view criticism as a valuable opportunity to grow. For instance, after receiving feedback on my presentation skills, I took a public speaking course. This significantly boosted my confidence and effectiveness in client meetings."
                 </AccordionDetails>
               </Accordion>
@@ -227,12 +226,12 @@ const ResourcesPage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography sx={{ mb: 1 }}>
-                    <Chip label="Motivation" color="primary" sx={styles.chip} /> This question evaluates your interpersonal skills, patience, and ability to navigate challenging team dynamics.
+                    <Chip label="Goal" color="primary" sx={styles.chip} /> This question evaluates your interpersonal skills, patience, and ability to navigate challenging team dynamics.
                   </Typography>
                   <Typography sx={{ mb: 1 }}>
                     <Chip label="Strategy" color="secondary" sx={styles.chip} /> Share a story that highlights how you approached the situation with empathy, understanding, and professionalism. Focus on the actions you took to ensure team cohesion and project success without casting blame or negativity on others.
                   </Typography>
-                  <Chip label="Example Response" color="primary" sx={styles.chip} />
+                  <Chip label="Example Response" color="success" sx={styles.chip} />
                     "On a project team, I worked with a colleague who had a very different approach to work. Initially, our differences led to tension, but I sought to understand their perspective and find common ground. By focusing on our shared goals and adapting our communication styles, we improved our collaboration and delivered a successful project outcome. This experience taught me the importance of empathy and adaptability in teamwork."
                 </AccordionDetails>
               </Accordion>
