@@ -15,9 +15,41 @@ const Navbar = () => {
       navigate('/');
     });
   };
-  
+
   const user = useContext(UserContext);
-  console.log(user);
+  const isAdmin = user && user.role === 'admin';
+
+  const renderLinks = () => {
+    return (
+      <>
+        <Link to="/" onClick={toggleDropdown}>Home</Link>
+        {user ? (
+          <>
+            {isAdmin ? (
+              <>
+                <Link to="/feedback" onClick={toggleDropdown}>Mock Behavioral Interview Feedback</Link>
+                <Link to="/zoomMeeting" onClick={toggleDropdown}>Zoom Meeting</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/book-interview" onClick={toggleDropdown}>Book an Interview</Link>
+                <Link to="/resources" onClick={toggleDropdown}>Interview Resources</Link>
+                <Link to="/zoomMeeting" onClick={toggleDropdown}>Zoom Meeting</Link>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {/* Non-user can see but not navigate */}
+            <a onClick={(e) => { e.preventDefault(); alert('Please log in to access this feature.'); }}>Book an Interview</a>
+            <a onClick={(e) => { e.preventDefault(); alert('Please log in to access this feature.'); }}>Interview Resources</a>
+            <a onClick={(e) => { e.preventDefault(); alert('Please log in to access this feature.'); }}>Mock Behavioral Interview Feedback</a>
+            <a onClick={(e) => { e.preventDefault(); alert('Please log in to access this feature.'); }}>Zoom Meeting</a>
+          </>
+        )}
+      </>
+    );
+  };
 
   return (
     <nav className='navbar'>
@@ -30,13 +62,7 @@ const Navbar = () => {
 
         {isOpen && (
           <div className='dropdown-menu'>
-            <Link to="/" onClick={toggleDropdown}>Home</Link>
-            <Link to="/userDashboard" onClick={toggleDropdown}>Dashboard</Link>
-            <Link to="/book-interview" onClick={toggleDropdown}>Book an Interview</Link>
-            <Link to="/feedback" onClick={toggleDropdown}>Mock Behavioral Interview Feedback</Link>
-            <Link to="/resources" onClick={toggleDropdown}>Interview Resources</Link>
-            <Link to="/zoomMeeting" onClick={toggleDropdown}>Zoom Meeting</Link>
-            {/* <Link to="/ranking" onClick={toggleDropdown}>Ranking System</Link> */}
+            {renderLinks()}
           </div>
         )}
       </div>
