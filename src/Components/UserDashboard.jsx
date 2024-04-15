@@ -25,7 +25,11 @@ const UserDashboard = () => {
 
   const handleEventClick = (event) => {
     setCurrentEvent(event);
-    navigate(`/zoomMeeting?meetingNumber=${event.meeting_id}&password=${encodeURIComponent(event.password)}`);
+    navigate(
+      `/zoomMeeting?meetingNumber=${
+        event.meeting_id
+      }&password=${encodeURIComponent(event.password)}`
+    );
   };
 
   const fetchEvents = () => {
@@ -40,11 +44,11 @@ const UserDashboard = () => {
       },
       body: JSON.stringify({ email: user.email }),
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
+      .then((response) => response.json())
+      .then((responseJson) => {
         console.log("Events fetched:", responseJson);
         setEvents(responseJson);
-    });
+      });
   };
 
   useEffect(() => {
@@ -65,7 +69,12 @@ const UserDashboard = () => {
         {user?.displayName}'s Dashboard
       </Typography>
 
-      <Grid container columnSpacing={4} rowSpacing={3} sx={{ my: 2, mx: "auto" }}>
+      <Grid
+        container
+        columnSpacing={4}
+        rowSpacing={3}
+        sx={{ my: 2, mx: "auto" }}
+      >
         <Grid xs={6} sx={{ mx: 1, maxWidth: "100%" }}>
           <Card
             sx={{
@@ -87,7 +96,9 @@ const UserDashboard = () => {
               title="User Profile Picture"
             />
             <CardContent>
-              <Typography sx={{ fontSize: 20 }}>Name: {user?.displayName}</Typography>
+              <Typography sx={{ fontSize: 20 }}>
+                Name: {user?.displayName}
+              </Typography>
               <Typography>Email: {user?.email}</Typography>
               <Typography color="primary">RANK</Typography>
               <Gauge width={100} height={100} value={60} />
@@ -130,8 +141,14 @@ const UserDashboard = () => {
                   }}
                 >
                   <ListItemText
-                    primary={`Meeting with ${event.inviter_name === user.displayName ? event.invitee_name : event.inviter_name}`}
-                    secondary={`Starts at: ${new Date(event.start_time).toLocaleString()}`}
+                    primary={`Meeting with ${
+                      event.inviter_name === user.displayName
+                        ? event.invitee_name
+                        : event.inviter_name
+                    }`}
+                    secondary={`Starts at: ${new Date(
+                      event.start_time
+                    ).toLocaleString()}`}
                   />
                 </ListItem>
               ))}

@@ -1,12 +1,9 @@
-import { getApp, initializeApp, deleteApp,  } from "firebase/app";
-import "firebase/firestore"; 
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_API_KEY,
     authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -16,37 +13,55 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_APP_ID,
     measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
-// firebase.initializeApp(firebaseConfig)
-export const app = initializeApp(firebaseConfig);
-// export const db = firebase.firestore()
 
-export const auth = getAuth();
+// Initialize Firebase App
+const app = initializeApp(firebaseConfig);
 
+// Initialize Firestore
+export const db = getFirestore(app);
+
+// Initialize Firebase Auth
+export const auth = getAuth(app);
 auth.useDeviceLanguage();
 
-
+// Initialize Google Auth Provider
 const googleAuth = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
-    try {
-  //the signInWithPopUp() method accepts ANY provider we create. This is all our authentication logic
-    signInWithPopup(auth, googleAuth).then((res) => {
-        console.log(res)
-    });
-     } catch (err) {
-      console.log("test3")
-      console.log(err, "hello2");
-      console.log("test4")
-     }
-  };
-
-  export const logOut = async () =>{
-    try {
-      await signOut(auth)
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-
+// Initialize Analytics
 const analytics = getAnalytics(app);
+
+// Function to create or update user document in Firestore
+const createUserProfileDocument = async (user, additionalData) => {
+    if (!user) return;
+
+    const userRef = doc(db, "users", user.uid);
+    await setDoc(userRef, {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        role: additionalData?.role || 'interviewee',  // Default role is 'interviewee'
+    }, { merge: true });
+
+    return userRef;
+};
+
+// Sign in with Google function
+export const signInWithGoogle = () => {
+    signInWithPopup(auth, googleAuth)
+        .then((result) => {
+            const { user } = result;
+            
+        })
+        .catch((error) => {
+            console.error("Error during sign in with Google:", error);
+        });
+};
+
+// Sign out function
+export const logOut = async () => {
+    try {
+        await signOut(auth);
+    } catch (error) {
+        console.error("Error signing out:", error);
+    }
+};
