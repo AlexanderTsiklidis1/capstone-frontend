@@ -140,19 +140,17 @@ const UserDashboard = () => {
                     borderRadius: "5px",
                   }}
                 >
-                  <ListItemText
-                    primary={`Meeting with ${
-                      event.inviter_name === user.displayName
-                        ? event.invitee_name
-                        : event.inviter_name
-                    }`}
-                    secondary={`Starts at: ${new Date(
-                      event.start_time
-                    ).toLocaleString()}`}
-                  />
-                </ListItem>
-              ))}
-            </List>
+                 <ListItemText
+        primary={`AceIt Interview with ${
+          user.role === 'admin' ? event.invitee_name : event.inviter_name
+        }`}
+        secondary={`Starts at: ${new Date(
+          event.start_time
+        ).toLocaleString()}`}
+      />
+    </ListItem>
+  ))}
+</List>
           </Card>
 
           <Card

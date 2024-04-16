@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
                     const userData = docSnap.data();
                     const userDetails = {
                         email: user.email,
-                        displayName: user.displayName,
+                        displayName: userData.displayName,
                         photoURL: user.photoURL,
                         uid: user.uid,
                         role: userData.role
