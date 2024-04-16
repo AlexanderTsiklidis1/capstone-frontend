@@ -102,14 +102,11 @@ const PromptQuestions = ({ prompts, feedback, setFeedback }) => {
 			</Stack>
 		</>
 	);
-	{
-	}
 };
 
 const InterviewerGradingForm = () => {
 	const user = useContext(UserContext);
 	const { currentEvent } = useCurrentEvent();
-	console.log(currentEvent);
 	const [prompts, setPrompts] = useState([]);
 	const [fellowName, setFellowName] = useState('');
 
