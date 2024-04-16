@@ -18,16 +18,16 @@ const PromptQuestion = ({
 	questionNumber,
 	updateQuestionFeedback,
 }) => {
-	const { prompt, id } = question;
+	const { prompt } = question;
 	const [grade, setGrade] = useState('');
 	const [comment, setComment] = useState('');
 
 	const selectColor =
-		grade === 6.25
+		grade === 1
 			? 'green'
-			: grade === 4.6875
+			: grade === 0.75
 			? 'gold'
-			: grade === 3.125
+			: grade === 0.5
 			? 'darkorange'
 			: 'red';
 
@@ -79,19 +79,19 @@ const PromptQuestion = ({
 								handleFeedbackChange(e, 'grade');
 							}}
 						>
-							<MenuItem value={6.25} sx={{ color: 'green', fontWeight: 600 }}>
+							<MenuItem value={1} sx={{ color: 'green', fontWeight: 600 }}>
 								Exceptional
 							</MenuItem>
-							<MenuItem value={4.6875} sx={{ color: 'gold', fontWeight: 600 }}>
+							<MenuItem value={0.75} sx={{ color: 'gold', fontWeight: 600 }}>
 								Proficient
 							</MenuItem>
 							<MenuItem
-								value={3.125}
+								value={0.5}
 								sx={{ color: 'darkorange', fontWeight: 600 }}
 							>
 								Developing
 							</MenuItem>
-							<MenuItem value={1.5625} sx={{ color: 'red', fontWeight: 600 }}>
+							<MenuItem value={0.25} sx={{ color: 'red', fontWeight: 600 }}>
 								Novice
 							</MenuItem>
 						</Select>
@@ -106,26 +106,6 @@ const PromptQuestion = ({
 								handleFeedbackChange(e, 'notes');
 							}}
 							sx={{ mb: 1 }}
-						/>
-					</FormControl>
-				</Box>
-				<Box
-					sx={{
-						// minWidth: 150,
-						mt: 2,
-						// border: 1,
-					}}
-				>
-					<FormControl fullWidth>
-						<TextField
-							id='interviewer-comments'
-							label='Interviewer Comments'
-							multiline
-							variant='outlined'
-							onChange={(e) => {
-								handleFeedbackChange(e, 'notes');
-							}}
-							// placeholder='Interviewer comments...'
 						/>
 					</FormControl>
 				</Box>
