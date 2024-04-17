@@ -29,7 +29,7 @@ const CalendlyWidget = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'start',
-    width: "100%",
+    minWidth: "100%",
     // maxWidth: "600px",
     margin: "0 auto",
     height: "850px"
