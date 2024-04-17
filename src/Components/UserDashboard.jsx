@@ -22,9 +22,12 @@ const UserDashboard = () => {
   const user = useContext(UserContext);
   const [events, setEvents] = useState([]);
   const { setCurrentEvent } = useCurrentEvent();
+  
+  
 
   const handleEventClick = (event) => {
     setCurrentEvent(event);
+    localStorage.setItem('currentEvent', JSON.stringify(event))
     navigate(
       `/zoomMeeting?meetingNumber=${
         event.meeting_id

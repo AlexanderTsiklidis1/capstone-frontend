@@ -21,10 +21,10 @@ function ZoomMeetingPage() {
   const userEmail = `${user?.email}`;
 
   const leaveUrl =
-    user?.displayName === currentEvent?.inviter_name
+    user?.role === "admin"
       ? "http://localhost:5173/feedback"
       : "http://localhost:5173/userDashboard";
-  const role = user?.displayName === currentEvent?.inviter_name ? 1 : 0;
+  const role = user?.role === "admin" ? 1 : 0;
 
   const getSignature = (e) => {
     e.preventDefault();
