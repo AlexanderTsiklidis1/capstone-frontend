@@ -50,11 +50,10 @@ const UserDashboard = () => {
           console.log("Events fetched:", responseJson);
           setEvents(responseJson);
         });
-      } catch(err) {
-        console.error(err);
-        alert("no records for user found")
-      }
-
+    } catch (err) {
+      console.error(err);
+      alert("no records for user found");
+    }
   };
 
   useEffect(() => {
@@ -76,12 +75,13 @@ const UserDashboard = () => {
       </Typography>
 
       <Grid
+        px={10}
         container
-        columnSpacing={4}
+        columns={{ xs: 1, m: 7, lg: 7, xl: 7 }}
         rowSpacing={3}
         sx={{ my: 2, mx: "auto" }}
       >
-        <Grid xs={6} sx={{ mx: 1, maxWidth: "100%" }}>
+        <Grid item xs={3} sx={{ mx: 2, maxWidth: "100%" }}>
           <Card
             sx={{
               minWidth: "70%",
@@ -111,8 +111,11 @@ const UserDashboard = () => {
             </CardContent>
           </Card>
         </Grid>
-
-        <Grid xs={12} sx={{ mx: 1, mb: 2 }}>
+        <Grid
+          item
+          xs={3}
+          sx={{ mx: 2, maxWidth: "100%", minWidth: "50%", minHeight: "100%" }}
+        >
           <Card
             sx={{
               display: "flex",
@@ -146,19 +149,23 @@ const UserDashboard = () => {
                     borderRadius: "5px",
                   }}
                 >
-                 <ListItemText
-        primary={`AceIt Interview with ${
-          user.role === 'admin' ? event.invitee_name : event.inviter_name
-        }`}
-        secondary={`Starts at: ${new Date(
-          event.start_time
-        ).toLocaleString()}`}
-      />
-    </ListItem>
-  ))}
-</List>
+                  <ListItemText
+                    primary={`AceIt Interview with ${
+                      user.role === "admin"
+                        ? event.invitee_name
+                        : event.inviter_name
+                    }`}
+                    secondary={`Starts at: ${new Date(
+                      event.start_time
+                    ).toLocaleString()}`}
+                  />
+                </ListItem>
+              ))}
+            </List>
           </Card>
+        </Grid>
 
+        <Grid item xs={7} sx={{ mx: 2 }}>
           <Card
             sx={{
               maxWidth: "100%",
@@ -168,15 +175,20 @@ const UserDashboard = () => {
               borderColor: "#F3B6B6",
               borderStyle: "solid",
               overflow: "auto",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
             }}
           >
-            <CardContent>
+            <CardContent sx={{ minWidth: "100%" }}>
               <Typography
                 variant="h5"
                 color="primary"
                 gutterBottom
                 style={{
                   display: "flex",
+                  width: "100%",
+                  minWidth: "100%",
                   flexDirection: "column",
                   alignItems: "center",
                 }}
