@@ -37,18 +37,24 @@ const UserDashboard = () => {
       navigate("/");
       return;
     }
-    fetch(`${API}/interviews`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: user.email }),
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log("Events fetched:", responseJson);
-        setEvents(responseJson);
-      });
+    try {
+      fetch(`${API}/interviews`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: user.email }),
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log("Events fetched:", responseJson);
+          setEvents(responseJson);
+        });
+      } catch(err) {
+        console.error(err);
+        alert("no records for user found")
+      }
+
   };
 
   useEffect(() => {

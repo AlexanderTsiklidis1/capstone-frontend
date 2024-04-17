@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
                     setCurrentUser(userDetails);
                 } else {
                     console.log("No such user document!");
-                    setCurrentUser(null);  // Ensure state is clear if no document is found
+                    setCurrentUser(user);  // Ensure state is clear if no document is found
                 }
             } else {
                 localStorage.removeItem('user');
