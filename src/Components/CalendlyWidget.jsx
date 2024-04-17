@@ -30,7 +30,7 @@ const CalendlyWidget = () => {
     alignItems: 'center',
     justifyContent: 'start',
     width: "100%",
-    maxWidth: "600px",
+    // maxWidth: "600px",
     margin: "0 auto",
     height: "850px"
   }}

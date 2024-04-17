@@ -76,12 +76,13 @@ const UserDashboard = () => {
       </Typography>
 
       <Grid
+        px={10}
         container
-        columnSpacing={4}
+        columns={{xs:1, m:7, lg:7, xl:7}}
         rowSpacing={3}
         sx={{ my: 2, mx: "auto" }}
       >
-        <Grid xs={6} sx={{ mx: 1, maxWidth: "100%" }}>
+        <Grid item xs={3} sx={{ mx: 2, maxWidth: "100%" }}>
           <Card
             sx={{
               minWidth: "70%",
@@ -111,8 +112,7 @@ const UserDashboard = () => {
             </CardContent>
           </Card>
         </Grid>
-
-        <Grid xs={12} sx={{ mx: 1, mb: 2 }}>
+        <Grid item xs={3} sx={{ mx: 2, maxWidth: "100%", minWidth:"50%", minHeight:"100%" }}>
           <Card
             sx={{
               display: "flex",
@@ -158,6 +158,11 @@ const UserDashboard = () => {
   ))}
 </List>
           </Card>
+        </Grid>
+        
+
+        <Grid item xs={7} sx={{ mx: 2 }}>
+       
 
           <Card
             sx={{
@@ -168,6 +173,9 @@ const UserDashboard = () => {
               borderColor: "#F3B6B6",
               borderStyle: "solid",
               overflow: "auto",
+              display:"flex",
+              flexDirection:"row",
+              justifyContent:"center"
             }}
           >
             <CardContent>
@@ -177,6 +185,8 @@ const UserDashboard = () => {
                 gutterBottom
                 style={{
                   display: "flex",
+                  width:"100%",
+                  minWidth:"100%",
                   flexDirection: "column",
                   alignItems: "center",
                 }}
