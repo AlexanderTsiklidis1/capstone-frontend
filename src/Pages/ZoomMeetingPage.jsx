@@ -16,7 +16,7 @@ function ZoomMeetingPage() {
   const passWord = searchParams.get("password") || "defaultPassword";
 
   const authEndpoint = "https://capstone-backend-4iyt.onrender.com/zoom-signature";
-  const sdkKey = "jL3bLPTT2meIBpUgElWQ";
+  const sdkKey = "Jrss6ZCZQMKAfiycYmQgWA";
   const userName = `${user?.displayName}`;
   const userEmail = `${user?.email}`;
 
