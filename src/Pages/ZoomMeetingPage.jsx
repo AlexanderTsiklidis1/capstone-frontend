@@ -15,15 +15,15 @@ function ZoomMeetingPage() {
   const meetingNumber = searchParams.get("meetingNumber");
   const passWord = searchParams.get("password") || "defaultPassword";
 
-  const authEndpoint = "http://localhost:9000/zoom-signature";
+  const authEndpoint = "https://capstone-backend-4iyt.onrender.com/zoom-signature";
   const sdkKey = "Jrss6ZCZQMKAfiycYmQgWA";
   const userName = `${user?.displayName}`;
   const userEmail = `${user?.email}`;
 
   const leaveUrl =
     user?.role === "admin"
-      ? "http://localhost:5173/feedback"
-      : "http://localhost:5173/userDashboard";
+      ? "https://aceitapp.netlify.app/feedback"
+      : "https://aceitapp.netlify.app/userDashboard";
   const role = user?.role === "admin" ? 1 : 0;
 
   const getSignature = (e) => {
