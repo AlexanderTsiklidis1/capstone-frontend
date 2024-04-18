@@ -32,6 +32,10 @@ const UserDashboard = () => {
         event.meeting_id
       }&password=${encodeURIComponent(event.password)}`
     );
+
+    if (user.role === "admin") {
+      window.open(`${window.location.origin}/feedback`, '_blank');
+    }
   };
 
   const fetchEvents = () => {

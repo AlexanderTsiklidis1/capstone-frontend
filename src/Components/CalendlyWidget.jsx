@@ -14,12 +14,9 @@ const CalendlyWidget = () => {
   const [selected, setSelected] = useState(0);
 
   function handleClick() {
-    if (selected >= myCalendly.length) {
-      setSelected(0);
-    } else {
-      setSelected(selected + 1);
-    }
+    setSelected((prevSelected) => (prevSelected + 1) % myCalendly.length);
   }
+  
 
   return (
 <div
