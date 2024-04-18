@@ -217,7 +217,7 @@ const InterviewerGradingForm = () => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<FormControl>
-				<FormLabel>Fellow Name</FormLabel>
+				<FormLabel>Interviewee Name</FormLabel>
 				<TextField
 					type='text'
 					sx={{ mb: 1 }}
