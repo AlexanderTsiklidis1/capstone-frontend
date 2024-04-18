@@ -29,7 +29,9 @@ const PromptQuestion = ({
 			? 'gold'
 			: grade === 0.5
 			? 'darkorange'
-			: 'red';
+			: grade === 0.25
+			? 'red'
+			: '#444';
 
 	const handleFeedbackChange = (e, feedbackType) => {
 		if (feedbackType === 'grade') {
@@ -74,7 +76,11 @@ const PromptQuestion = ({
 							id='grade-select'
 							value={grade}
 							label='Grade'
-							sx={{ color: selectColor, fontWeight: 600, mb: 3 }}
+							sx={{
+								color: selectColor,
+								fontWeight: 600,
+								mb: 3,
+							}}
 							onChange={(e) => {
 								handleFeedbackChange(e, 'grade');
 							}}
@@ -93,6 +99,15 @@ const PromptQuestion = ({
 							</MenuItem>
 							<MenuItem value={0.25} sx={{ color: 'red', fontWeight: 600 }}>
 								Novice
+							</MenuItem>
+							<MenuItem
+								value={0}
+								sx={{
+									color: '#444',
+									fontWeight: 600,
+								}}
+							>
+								N/A
 							</MenuItem>
 						</Select>
 						<TextField
