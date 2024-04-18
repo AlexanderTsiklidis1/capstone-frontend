@@ -96,12 +96,12 @@ const PromptQuestion = ({
 							</MenuItem>
 						</Select>
 						<TextField
-							id='interviewer-comment'
-							label='Comment'
-							name='comment'
+							id='interviewer-notes'
+							label='Notes'
+							name='notes'
 							value={comment}
 							multiline
-							placeholder='Comment'
+							placeholder='Notes'
 							onChange={(e) => {
 								handleFeedbackChange(e, 'notes');
 							}}
