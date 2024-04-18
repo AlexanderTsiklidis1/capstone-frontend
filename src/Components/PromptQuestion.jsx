@@ -21,6 +21,7 @@ const PromptQuestion = ({
 	const { prompt } = question;
 	const [grade, setGrade] = useState('');
 	const [comment, setComment] = useState('');
+	console.log(question.category);
 
 	const selectColor =
 		grade === 1
@@ -60,7 +61,7 @@ const PromptQuestion = ({
 						fontWeight: 700,
 					}}
 				>
-					Question {questionNumber}:
+					<h3>{question.category}</h3>
 				</Typography>{' '}
 				{prompt}
 				<Box

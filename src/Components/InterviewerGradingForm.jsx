@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useContext } from 'react';
 import { UserContext } from '../Providers/UserProvider';
-import { useCurrentEvent } from '../Providers/CurrentEventProvider';
 import {
 	FormLabel,
 	FormControl,
@@ -33,16 +32,6 @@ const PromptQuestions = ({ prompts, feedback, setFeedback }) => {
 			[`prompt_${questionNumber}_${feedbackType}`]: value,
 		});
 	};
-
-	// const normalizePrompts = () => {
-	// 	const promptRecord = {};
-
-	// 	console.log(promptRecord);
-	// 	return promptRecord;
-	// };
-
-	// const normalizedPrompts = normalizePrompts();
-	// console.log(normalizePrompts());
 
 	return (
 		<>
@@ -107,8 +96,6 @@ const PromptQuestions = ({ prompts, feedback, setFeedback }) => {
 const InterviewerGradingForm = () => {
 	const user = useContext(UserContext);
 	const currentEvent = JSON.parse(localStorage.getItem('currentEvent'));
-
-	console.log(currentEvent);
 
 	const [prompts, setPrompts] = useState([]);
 	const [fellowName, setFellowName] = useState('');
@@ -204,28 +191,28 @@ const InterviewerGradingForm = () => {
 		event.preventDefault();
 		const postData = {
 			interviewee_name: fellowName,
-			admin_name: user.displayName,  // Assuming the admin name is the logged-in user's display name
+			admin_name: user.displayName, // Assuming the admin name is the logged-in user's display name
 			...feedback, // Your feedback state should contain all the other required fields
 		};
-	
-		fetch(`${API}/feedback`, {  // Adjust this if your API endpoint is different
+
+		fetch(`${API}/feedback`, {
+			// Adjust this if your API endpoint is different
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(postData),
 		})
-		.then(response => response.json())
-		.then(data => {
-			console.log('Success:', data);
-			// Handle successful submission here, e.g., redirect or show a success message
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-			// Handle errors here, e.g., show an error message
-		});
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('Success:', data);
+				// Handle successful submission here, e.g., redirect or show a success message
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+				// Handle errors here, e.g., show an error message
+			});
 	};
-
 
 	return (
 		<form onSubmit={handleSubmit}>
