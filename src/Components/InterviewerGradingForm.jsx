@@ -106,7 +106,10 @@ const PromptQuestions = ({ prompts, feedback, setFeedback }) => {
 
 const InterviewerGradingForm = () => {
 	const user = useContext(UserContext);
-	const { currentEvent } = useCurrentEvent();
+	const currentEvent = JSON.parse(localStorage.getItem('currentEvent'));
+
+	console.log(currentEvent);
+
 	const [prompts, setPrompts] = useState([]);
 	const [fellowName, setFellowName] = useState('');
 

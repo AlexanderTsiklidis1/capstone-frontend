@@ -17,14 +17,16 @@ import { Gauge } from "@mui/x-charts/Gauge";
 const API = import.meta.env.VITE_BASE_URL;
 import CalendlyWidget from "./CalendlyWidget";
 
-const UserDashboard = () => {
+const UserDashboard = () => { 
   const navigate = useNavigate();
   const user = useContext(UserContext);
   const [events, setEvents] = useState([]);
   const { setCurrentEvent } = useCurrentEvent();
+  const [feedbackSummary, setFeedbackSummary] = useState([]);
 
   const handleEventClick = (event) => {
     setCurrentEvent(event);
+    localStorage.setItem('currentEvent', JSON.stringify(event))
     navigate(
       `/zoomMeeting?meetingNumber=${
         event.meeting_id
@@ -57,8 +59,38 @@ const UserDashboard = () => {
   };
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+      return;
+    }
     fetchEvents();
+    fetchFeedbackSummary();
   }, [user, navigate]);
+
+
+  const fetchFeedbackSummary = async () => {
+    try {
+        const response = await fetch(`${API}/feedback`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ interviewee_name: user.displayName })
+        });
+        const data = await response.json();
+        if (data && Array.isArray(data)) {
+            setFeedbackSummary(data);
+        } else {
+            console.log('No feedback data received:', data);
+        }
+    } catch (error) {
+        console.error('Failed to fetch feedback summary:', error);
+    }
+};
+
+const viewDetails = (id) => {
+  navigate(`/feedback/details/${id}`);
+};
 
   return (
     <>
@@ -114,7 +146,9 @@ const UserDashboard = () => {
         <Grid
           item
           xs={3}
+                    rowSpacing={3}
           sx={{ mx: 2, maxWidth: "100%", minWidth: "50%", minHeight: "100%" }}
+
         >
           <Card
             sx={{
@@ -163,6 +197,38 @@ const UserDashboard = () => {
               ))}
             </List>
           </Card>
+          
+          <Card
+  sx={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    border: 1,
+    borderColor: "#F3B6B6",
+    borderStyle: "solid",
+    overflow: "auto",
+    p: 3,
+  }}
+>
+  <Typography variant="h5" color="primary" gutterBottom>
+    Latest Feedback Summary
+  </Typography>
+  <List>
+        {feedbackSummary.length > 0 ? feedbackSummary.map((feedback) => (
+          <ListItem sx={{
+            mb: 1,
+            border: 1,
+            borderColor: "#cccccc",
+            borderRadius: "5px",
+          }} button key={feedback.id} onClick={() => viewDetails(feedback.id)}>
+            <ListItemText primary={`Score: ${feedback.total_grade} from ${feedback.admin_name}`} />
+          </ListItem>
+        )) : <Typography>No feedback available.</Typography>}
+      </List>
+</Card>
+
         </Grid>
 
         <Grid item xs={7} sx={{ mx: 2 }}>

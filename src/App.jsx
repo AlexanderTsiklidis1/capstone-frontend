@@ -11,6 +11,7 @@ import FeedbackPage from "./Pages/FeedbackPage";
 import ZoomMeetingPage from "./Pages/ZoomMeetingPage";
 import EventShowPage from "./Pages/EventShowPage";
 import RankInfoPage from "./Pages/RankInfoPage";
+import FeedbackDetails from "./Components/FeedbackDetails";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const currentUser = useContext(UserContext);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/book-interview" element={<CalendlyWidget />} />
             <Route path="/userDashboard" element={<UserDashboard />} />
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/feedback/details/:id" element={<FeedbackDetails />} />
             <Route path="/feedback" element={<ProtectedRoute allowedRoles={['admin']}>
                 <FeedbackPage />
               </ProtectedRoute>} />
