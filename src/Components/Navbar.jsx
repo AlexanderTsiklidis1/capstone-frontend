@@ -5,6 +5,7 @@ import { signInWithGoogle, logOut } from "../Services/Firebase.js";
 import { UserContext } from "../Providers/UserProvider";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, Stack, Typography } from "@mui/material";
+import logo from '../assets/capstone-transp-logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -113,11 +114,7 @@ const Navbar = () => {
         }}
       >
         <Box>
-          <img
-            src="../src/assets/capstone-transp-logo.png"
-            alt="AceIt Logo"
-            width="45px"
-          />
+        <img src={logo} alt="AceIt Logo" width="45px" />
         </Box>
         <Typography
           color="primary"
