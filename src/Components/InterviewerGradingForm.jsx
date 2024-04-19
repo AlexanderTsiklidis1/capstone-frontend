@@ -191,28 +191,28 @@ const InterviewerGradingForm = () => {
 		event.preventDefault();
 		const postData = {
 			interviewee_name: fellowName,
-			admin_name: user.displayName, // Assuming the admin name is the logged-in user's display name
-			...feedback, // Your feedback state should contain all the other required fields
+			admin_name: user.displayName,
+			...feedback,
 		};
-
+	
 		fetch(`${API}/feedback`, {
-			// Adjust this if your API endpoint is different
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(postData),
 		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log('Success:', data);
-				// Handle successful submission here, e.g., redirect or show a success message
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-				// Handle errors here, e.g., show an error message
-			});
+		.then((response) => response.json())
+		.then((data) => {
+			console.log('Success:', data);
+			alert('Feedback submitted successfully!');
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+			alert('Failed to submit feedback. Please try again.');
+		});
 	};
+	
 
 	return (
 		<form onSubmit={handleSubmit}>
