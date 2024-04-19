@@ -8,7 +8,9 @@ const CalendlyWidget = () => {
 
   const myCalendly = [
     "https://calendly.com/paul-chernick-fiyv/aceit-interview-test",
-    "https://calendly.com/alexandertsiklidis/test",
+    "https://calendly.com/alexandertsiklidis/aceit-mock-interview"
+    
+
   ];
   const [selected, setSelected] = useState(0);
 
