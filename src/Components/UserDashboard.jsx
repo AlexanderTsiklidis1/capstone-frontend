@@ -16,8 +16,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Gauge } from "@mui/x-charts/Gauge";
 const API = import.meta.env.VITE_BASE_URL;
 import CalendlyWidget from "./CalendlyWidget";
+import moment from 'moment-timezone';
 
-const UserDashboard = () => { 
+const UserDashboard = () => {
   const navigate = useNavigate();
   const user = useContext(UserContext);
   const [events, setEvents] = useState([]);
@@ -26,7 +27,7 @@ const UserDashboard = () => {
 
   const handleEventClick = (event) => {
     setCurrentEvent(event);
-    localStorage.setItem('currentEvent', JSON.stringify(event))
+    localStorage.setItem("currentEvent", JSON.stringify(event));
     navigate(
       `/zoomMeeting?meetingNumber=${
         event.meeting_id
@@ -34,7 +35,7 @@ const UserDashboard = () => {
     );
 
     if (user.role === "admin") {
-      window.open(`${window.location.origin}/feedback`, '_blank');
+      window.open(`${window.location.origin}/feedback`, "_blank");
     }
   };
 
@@ -54,7 +55,12 @@ const UserDashboard = () => {
         .then((response) => response.json())
         .then((responseJson) => {
           console.log("Events fetched:", responseJson);
-          setEvents(responseJson);
+          const uniqueEvents = Array.from(
+            new Set(responseJson.map((e) => e.id))
+          ).map((id) => {
+            return responseJson.find((e) => e.id === id);
+          });
+          setEvents(uniqueEvents);
         });
     } catch (err) {
       console.error(err);
@@ -71,30 +77,29 @@ const UserDashboard = () => {
     fetchFeedbackSummary();
   }, [user, navigate]);
 
-
   const fetchFeedbackSummary = async () => {
     try {
-        const response = await fetch(`${API}/feedback`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ interviewee_name: user.displayName })
-        });
-        const data = await response.json();
-        if (data && Array.isArray(data)) {
-            setFeedbackSummary(data);
-        } else {
-            console.log('No feedback data received:', data);
-        }
+      const response = await fetch(`${API}/feedback`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ interviewee_name: user.displayName }),
+      });
+      const data = await response.json();
+      if (data && Array.isArray(data)) {
+        setFeedbackSummary(data);
+      } else {
+        console.log("No feedback data received:", data);
+      }
     } catch (error) {
-        console.error('Failed to fetch feedback summary:', error);
+      console.error("Failed to fetch feedback summary:", error);
     }
-};
+  };
 
-const viewDetails = (id) => {
-  navigate(`/feedback/details/${id}`);
-};
+  const viewDetails = (id) => {
+    navigate(`/feedback/details/${id}`);
+  };
 
   return (
     <>
@@ -150,9 +155,8 @@ const viewDetails = (id) => {
         <Grid
           item
           xs={3}
-                    rowSpacing={3}
+          rowSpacing={3}
           sx={{ mx: 2, maxWidth: "100%", minWidth: "50%", minHeight: "100%" }}
-
         >
           <Card
             sx={{
@@ -177,7 +181,7 @@ const viewDetails = (id) => {
             <List>
               {events.map((event) => (
                 <ListItem
-                  key={event.id}
+                  key={event.id} // Ensure 'id' is a unique identifier
                   button
                   onClick={() => handleEventClick(event)}
                   sx={{
@@ -187,52 +191,61 @@ const viewDetails = (id) => {
                     borderRadius: "5px",
                   }}
                 >
-                  <ListItemText
-                    primary={`AceIt Interview with ${
-                      user.role === "admin"
-                        ? event.invitee_name
-                        : event.inviter_name
-                    }`}
-                    secondary={`Starts at: ${new Date(
-                      event.start_time
-                    ).toLocaleString()}`}
-                  />
+                      <ListItemText
+  primary={`AceIt Interview with ${
+    user.role === "admin"
+      ? event.invitee_name
+      : event.inviter_name
+  }`}
+  secondary={`Starts at: ${new Date(new Date(event.start_time).getTime() - 4 * 60 * 60 * 1000).toLocaleString("en-US", { timeZone: "America/New_York" })}`}
+/>
+
                 </ListItem>
               ))}
             </List>
           </Card>
-          
-          <Card
-  sx={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    maxWidth: "100%",
-    maxHeight: "100%",
-    border: 1,
-    borderColor: "#F3B6B6",
-    borderStyle: "solid",
-    overflow: "auto",
-    p: 3,
-  }}
->
-  <Typography variant="h5" color="primary" gutterBottom>
-    Latest Feedback Summary
-  </Typography>
-  <List>
-        {feedbackSummary.length > 0 ? feedbackSummary.map((feedback) => (
-          <ListItem sx={{
-            mb: 1,
-            border: 1,
-            borderColor: "#cccccc",
-            borderRadius: "5px",
-          }} button key={feedback.id} onClick={() => viewDetails(feedback.id)}>
-            <ListItemText primary={`Score: ${feedback.total_grade} from ${feedback.admin_name}`} />
-          </ListItem>
-        )) : <Typography>No feedback available.</Typography>}
-      </List>
-</Card>
 
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              border: 1,
+              borderColor: "#F3B6B6",
+              borderStyle: "solid",
+              overflow: "auto",
+              p: 3,
+            }}
+          >
+            <Typography variant="h5" color="primary" gutterBottom>
+              Latest Feedback Summary
+            </Typography>
+            <List>
+              {feedbackSummary.length > 0 ? (
+                feedbackSummary.map((feedback) => (
+                  <ListItem
+                    sx={{
+                      mb: 1,
+                      border: 1,
+                      borderColor: "#cccccc",
+                      borderRadius: "5px",
+                    }}
+                    button
+                    key={feedback.id}
+                    onClick={() => viewDetails(feedback.id)}
+                  >
+                    <ListItemText
+                      primary={`Score: ${feedback.total_grade} from ${feedback.admin_name}`}
+                    />
+                  </ListItem>
+                ))
+              ) : (
+                <Typography>No feedback available.</Typography>
+              )}
+            </List>
+          </Card>
         </Grid>
 
         <Grid item xs={7} sx={{ mx: 2 }}>
