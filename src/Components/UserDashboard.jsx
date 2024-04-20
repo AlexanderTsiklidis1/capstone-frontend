@@ -16,7 +16,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Gauge } from "@mui/x-charts/Gauge";
 const API = import.meta.env.VITE_BASE_URL;
 import CalendlyWidget from "./CalendlyWidget";
-import moment from 'moment-timezone';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -191,15 +190,15 @@ const UserDashboard = () => {
                     borderRadius: "5px",
                   }}
                 >
-                      <ListItemText
-  primary={`AceIt Interview with ${
-    user.role === "admin"
-      ? event.invitee_name
-      : event.inviter_name
-  }`}
-  secondary={`Starts at: ${new Date(new Date(event.start_time).getTime() - 4 * 60 * 60 * 1000).toLocaleString("en-US", { timeZone: "America/New_York" })}`}
-/>
+                  <ListItemText
+                    primary={`AceIt Interview with ${
+                      user.role === "admin"
+                        ? event.invitee_name
+                        : event.inviter_name
+                    }`}
+                    secondary={`Starts at: ${new Date(event.start_time).toLocaleString("en-US", { timeZone: 'America/New_York' })}`}
 
+                  />
                 </ListItem>
               ))}
             </List>
