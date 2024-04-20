@@ -38,33 +38,36 @@ const UserDashboard = () => {
     }
   };
 
+  const createCompositeKey = (event) => `${event.meeting_id}-${new Date(event.start_time).toISOString()}`;
+
   const fetchEvents = () => {
     if (!user) {
       navigate("/");
       return;
     }
-    try {
-      fetch(`${API}/interviews`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: user.email }),
-      })
-        .then((response) => response.json())
-        .then((responseJson) => {
-          console.log("Events fetched:", responseJson);
-          const uniqueEvents = Array.from(
-            new Set(responseJson.map((e) => e.id))
-          ).map((id) => {
-            return responseJson.find((e) => e.id === id);
-          });
-          setEvents(uniqueEvents);
+    fetch(`${API}/interviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: user.email }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log("Events fetched:", responseJson);
+        const eventsMap = new Map();
+        responseJson.forEach(event => {
+          const key = createCompositeKey(event);
+          if (!eventsMap.has(key)) {
+            eventsMap.set(key, event);
+          }
         });
-    } catch (err) {
-      console.error(err);
-      alert("no records for user found");
-    }
+        setEvents(Array.from(eventsMap.values()));
+      })
+      .catch(err => {
+        console.error(err);
+        alert("no records for user found");
+      });
   };
 
   useEffect(() => {
