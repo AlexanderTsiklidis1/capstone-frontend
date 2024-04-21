@@ -141,7 +141,7 @@ const viewDetails = (id) => {
               <Typography sx={{ fontSize: 20 }}>
                 Name: {user?.displayName}
               </Typography>
-              <Typography>Email: {user?.email}</Typography>
+              <Typography>Role: {user.role === "admin" ? "Volunteer" : "Fellow"}</Typography>
               <Typography color="primary">RANK</Typography>
               <Gauge width={100} height={100} value={60} />
             </CardContent>
