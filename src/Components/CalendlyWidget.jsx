@@ -7,6 +7,7 @@ const CalendlyWidget = () => {
 
 
   const myCalendly = [
+    "https://calendly.com/stefbarros-87/aceit-mock-interview",
     "https://calendly.com/paul-chernick-fiyv/aceit-interview-test",
     "https://calendly.com/alexandertsiklidis/test",
   ];
