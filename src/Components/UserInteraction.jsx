@@ -38,6 +38,7 @@ const InteractiveSection = () => {
 
   const handleSubmit = () => {
     setOpenSnackbar(true);
+    //attempting to handle answer storage here
     // You might want to handle the answer storage or further processing here
   };
 
