@@ -28,6 +28,7 @@ const InteractiveSection = () => {
   const [answer, setAnswer] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const { id } = useParams();
+  const [answerDetails, setAnswerDetails] = useState(null);
   
 
   const handleQuestionChange = (event) => {
