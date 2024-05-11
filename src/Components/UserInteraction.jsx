@@ -27,6 +27,8 @@ const InteractiveSection = () => {
   const [selectedQuestion, setSelectedQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const { id } = useParams();
+  
 
   const handleQuestionChange = (event) => {
     setSelectedQuestion(event.target.value);
