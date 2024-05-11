@@ -32,15 +32,15 @@ const InteractiveSection = () => {
     setSelectedQuestion(event.target.value);
   };
 
-  const handleAnswerChange = (event) => {
-    setAnswer(event.target.value);
-  };
+  // const handleAnswerChange = (event) => {
+  //   setAnswer(event.target.value);
+  // };
 
-  const handleSubmit = () => {
-    setOpenSnackbar(true);
-    //attempting to handle answer storage here
-    // You might want to handle the answer storage or further processing here
-  };
+  // const handleSubmit = () => {
+  //   setOpenSnackbar(true);
+  //   //attempting to handle answer storage here
+  //   // You might want to handle the answer storage or further processing here
+  // };
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
